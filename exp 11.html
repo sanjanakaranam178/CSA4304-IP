@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Finder - Real Estate</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f5f7fb;
+            color: #333;
+        }
+
+        header {
+            background: #173f5f;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #ffd166;
+        }
+
+        .hero {
+            min-height: 500px;
+            background: linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
+            url("https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+        }
+
+        .hero-content h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content p {
+            font-size: 19px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 13px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        button {
+            background: #f77f00;
+            color: white;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #d96500;
+        }
+
+        section {
+            padding: 50px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #173f5f;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        .properties {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .property-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+            transition: .3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .property-info {
+            padding: 20px;
+        }
+
+        .property-info h3 {
+            color: #173f5f;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            color: #f77f00;
+            font-size: 21px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .property-info p {
+            margin: 7px 0;
+        }
+
+        .favorite {
+            float: right;
+            color: red;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,.08);
+        }
+
+        .feature h3 {
+            color: #173f5f;
+            margin-bottom: 10px;
+        }
+
+        .feature span {
+            font-size: 40px;
+        }
+
+        .forms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,.1);
+        }
+
+        .form-box h2 {
+            color: #173f5f;
+            margin-bottom: 20px;
+        }
+
+        .form-box input,
+        .form-box select {
+            width: 100%;
+            padding: 13px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        .form-box button {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .agents {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .agent {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 12px rgba(0,0,0,.1);
+        }
+
+        .agent img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 3px 12px rgba(0,0,0,.15);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .ad {
+            background: linear-gradient(90deg, #173f5f, #20639b);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .ad h2 {
+            margin-bottom: 10px;
+        }
+
+        .ad a {
+            color: #ffd166;
+            font-weight: bold;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #e8f5e9;
+            border-radius: 8px;
+            color: #256029;
+            display: none;
+        }
+
+        footer {
+            background: #173f5f;
+            color: white;
+            padding: 30px 7%;
+            text-align: center;
+        }
+
+        footer p {
+            margin: 8px;
+        }
+
+        @media(max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 5px;
+                font-size: 13px;
+            }
+
+            .hero-content h2 {
+                font-size: 34px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<header>
+    <h1>🏠 Home Finder</h1>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#properties">Properties</a>
+        <a href="#agents">Agents</a>
+        <a href="#map">Map</a>
+        <a href="#login">Login</a>
+    </nav>
+</header>
+
+
+<!-- HOME -->
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h2>Find Your Dream Home</h2>
+
+        <p>
+            Search houses, apartments and lands according to
+            your location and budget.
+        </p>
+
+        <!-- SEARCH -->
+        <div class="search-box">
+
+            <input type="text"
+                   id="location"
+                   placeholder="Enter location">
+
+            <input type="number"
+                   id="minPrice"
+                   placeholder="Min Price">
+
+            <input type="number"
+                   id="maxPrice"
+                   placeholder="Max Price">
+
+            <select id="propertyType">
+                <option value="">Property Type</option>
+                <option value="House">House</option>
+                <option value="Apartment">Apartment</option>
+                <option value="Land">Land</option>
+                <option value="Commercial">Commercial</option>
+            </select>
+
+            <button onclick="searchProperty()">
+                Search
+            </button>
+
+        </div>
+
+        <div id="searchResult" class="result"></div>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+<section>
+
+    <h2 class="section-title">
+        Why Choose Home Finder?
+    </h2>
+
+    <div class="features">
+
+        <div class="feature">
+            <span>🔎</span>
+            <h3>Advanced Search</h3>
+            <p>
+                Search properties by location, price,
+                type and requirements.
+            </p>
+        </div>
+
+        <div class="feature">
+            <span>❤️</span>
+            <h3>Save Favorites</h3>
+            <p>
+                Save your favorite properties and
+                access them later.
+            </p>
+        </div>
+
+        <div class="feature">
+            <span>🗺️</span>
+            <h3>Interactive Map</h3>
+            <p>
+                Find property locations and explore
+                nearby areas.
+            </p>
+        </div>
+
+        <div class="feature">
+            <span>🔔</span>
+            <h3>Notifications</h3>
+            <p>
+                Receive updates about new properties
+                matching your search.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PROPERTIES -->
+<section id="properties">
+
+    <h2 class="section-title">
+        Featured Properties
+    </h2>
+
+    <div class="properties">
+
+        <!-- PROPERTY 1 -->
+        <div class="property-card">
+
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+
+            <div class="property-info">
+
+                <span class="favorite"
+                      onclick="addFavorite('Modern Villa')">
+                    ♥
+                </span>
+
+                <h3>Modern Villa</h3>
+
+                <p>📍 Chennai, Tamil Nadu</p>
+
+                <p>🛏 3 Bedrooms | 🚿 2 Bathrooms</p>
+
+                <p class="price">₹85 Lakhs</p>
+
+                <button onclick="bookProperty('Modern Villa')">
+                    Book Viewing
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROPERTY 2 -->
+        <div class="property-card">
+
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80">
+
+            <div class="property-info">
+
+                <span class="favorite"
+                      onclick="addFavorite('Luxury Apartment')">
+                    ♥
+                </span>
+
+                <h3>Luxury Apartment</h3>
+
+                <p>📍 Bangalore, Karnataka</p>
+
+                <p>🛏 2 Bedrooms | 🚿 2 Bathrooms</p>
+
+                <p class="price">₹62 Lakhs</p>
+
+                <button onclick="bookProperty('Luxury Apartment')">
+                    Book Viewing
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROPERTY 3 -->
+        <div class="property-card">
+
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80">
+
+            <div class="property-info">
+
+                <span class="favorite"
+                      onclick="addFavorite('Residential Land')">
+                    ♥
+                </span>
+
+                <h3>Residential Land</h3>
+
+                <p>📍 Coimbatore, Tamil Nadu</p>
+
+                <p>📐 2400 sq.ft</p>
+
+                <p class="price">₹35 Lakhs</p>
+
+                <button onclick="bookProperty('Residential Land')">
+                    Book Viewing
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- PROPERTY 4 -->
+        <div class="property-card">
+
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80">
+
+            <div class="property-info">
+
+                <span class="favorite"
+                      onclick="addFavorite('Commercial Office')">
+                    ♥
+                </span>
+
+                <h3>Commercial Office</h3>
+
+                <p>📍 Hyderabad, Telangana</p>
+
+                <p>📐 3000 sq.ft</p>
+
+                <p class="price">₹1.2 Crore</p>
+
+                <button onclick="bookProperty('Commercial Office')">
+                    Book Viewing
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- LOGIN AND REGISTER -->
+<section id="login">
+
+    <h2 class="section-title">
+        Buyer Account
+    </h2>
+
+    <div class="forms">
+
+        <!-- LOGIN -->
+        <div class="form-box">
+
+            <h2>🔐 Buyer Login</h2>
+
+            <input type="text"
+                   id="loginUser"
+                   placeholder="Username">
+
+            <input type="password"
+                   id="loginPass"
+                   placeholder="Password">
+
+            <button onclick="login()">
+                Login
+            </button>
+
+            <div id="loginMessage"
+                 class="result">
+            </div>
+
+        </div>
+
+
+        <!-- REGISTER -->
+        <div class="form-box">
+
+            <h2>📝 New Buyer Registration</h2>
+
+            <input type="text"
+                   id="regUser"
+                   placeholder="Username">
+
+            <input type="email"
+                   id="regEmail"
+                   placeholder="Email">
+
+            <input type="password"
+                   id="regPass"
+                   placeholder="Password">
+
+            <button onclick="register()">
+                Register
+            </button>
+
+            <div id="registerMessage"
+                 class="result">
+            </div>
+
+        </div>
+
+
+        <!-- SAVED SEARCH -->
+        <div class="form-box">
+
+            <h2>💾 Save Search Criteria</h2>
+
+            <input type="text"
+                   id="saveLocation"
+                   placeholder="Preferred Location">
+
+            <input type="number"
+                   id="saveBudget"
+                   placeholder="Maximum Budget">
+
+            <select id="saveType">
+
+                <option value="">
+                    Property Type
+                </option>
+
+                <option>
+                    House
+                </option>
+
+                <option>
+                    Apartment
+                </option>
+
+                <option>
+                    Land
+                </option>
+
+            </select>
+
+            <button onclick="saveSearch()">
+                Save Search
+            </button>
+
+            <div id="saveMessage"
+                 class="result">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AGENTS -->
+<section id="agents">
+
+    <h2 class="section-title">
+        Find Real Estate Agents
+    </h2>
+
+    <div class="agents">
+
+        <div class="agent">
+
+            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+
+            <h3>Arun Kumar</h3>
+
+            <p>Chennai Property Expert</p>
+
+            <p>⭐ 4.8 / 5</p>
+
+            <button onclick="contactAgent('Arun Kumar')">
+                Contact Agent
+            </button>
+
+        </div>
+
+
+        <div class="agent">
+
+            <img src="https://randomuser.me/api/portraits/women/44.jpg">
+
+            <h3>Priya Sharma</h3>
+
+            <p>Bangalore Property Consultant</p>
+
+            <p>⭐ 4.7 / 5</p>
+
+            <button onclick="contactAgent('Priya Sharma')">
+                Contact Agent
+            </button>
+
+        </div>
+
+
+        <div class="agent">
+
+            <img src="https://randomuser.me/api/portraits/men/46.jpg">
+
+            <h3>Rahul Raj</h3>
+
+            <p>Coimbatore Land Specialist</p>
+
+            <p>⭐ 4.9 / 5</p>
+
+            <button onclick="contactAgent('Rahul Raj')">
+                Contact Agent
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- MAP -->
+<section id="map">
+
+    <h2 class="section-title">
+        Property Location
+    </h2>
+
+    <div class="map-container">
+
+        <iframe
+            src="https://www.google.com/maps?q=Chennai,Tamil%20Nadu&output=embed">
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<!-- MORTGAGE CALCULATOR -->
+<section>
+
+    <h2 class="section-title">
+        🏦 Mortgage Calculator
+    </h2>
+
+    <div class="form-box"
+         style="max-width:600px;margin:auto;">
+
+        <input type="number"
+               id="loanAmount"
+               placeholder="Loan Amount">
+
+        <input type="number"
+               id="interest"
+               placeholder="Annual Interest Rate (%)">
+
+        <input type="number"
+               id="years"
+               placeholder="Loan Period (Years)">
+
+        <button onclick="calculateEMI()">
+            Calculate EMI
+        </button>
+
+        <div id="emiResult"
+             class="result">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ADVERTISEMENT -->
+<section>
+
+    <div class="ad">
+
+        <h2>🏡 Looking for More Properties?</h2>
+
+        <p>
+            Explore additional real estate listings
+            and property services.
+        </p>
+
+        <br>
+
+        <a href="https://www.99acres.com/"
+           target="_blank">
+            Visit 99acres
+        </a>
+
+        &nbsp;&nbsp; | &nbsp;&nbsp;
+
+        <a href="https://www.magicbricks.com/"
+           target="_blank">
+            Visit MagicBricks
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- VISITOR RECORD -->
+<section>
+
+    <h2 class="section-title">
+        Website Visitor Information
+    </h2>
+
+    <div class="form-box"
+         style="max-width:600px;margin:auto;">
+
+        <p>
+            👥 Total Visitors:
+            <strong id="visitorCount">0</strong>
+        </p>
+
+        <br>
+
+        <p>
+            Home Finder records website visits
+            for demonstration purposes.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <h2>🏠 Home Finder</h2>
+
+    <p>
+        Find your dream property at the right price.
+    </p>
+
+    <p>
+        © 2026 Home Finder. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+    /* SEARCH PROPERTY */
+
+    function searchProperty() {
+
+        let location =
+            document.getElementById("location").value;
+
+        let minPrice =
+            document.getElementById("minPrice").value;
+
+        let maxPrice =
+            document.getElementById("maxPrice").value;
+
+        let type =
+            document.getElementById("propertyType").value;
+
+        let result =
+            document.getElementById("searchResult");
+
+        if (location === "" &&
+            maxPrice === "" &&
+            type === "") {
+
+            result.innerHTML =
+                "Please enter a location, budget or property type.";
+
+        } else {
+
+            result.innerHTML =
+                "🔎 Searching properties in " +
+                (location || "your selected area") +
+                " within your budget.";
+
+        }
+
+        result.style.display = "block";
+    }
+
+
+    /* REGISTER */
+
+    function register() {
+
+        let username =
+            document.getElementById("regUser").value;
+
+        let email =
+            document.getElementById("regEmail").value;
+
+        let password =
+            document.getElementById("regPass").value;
+
+        let message =
+            document.getElementById("registerMessage");
+
+        if (username === "" ||
+            email === "" ||
+            password === "") {
+
+            message.innerHTML =
+                "Please fill all registration fields.";
+
+        } else {
+
+            localStorage.setItem(
+                "homeFinderUser",
+                username
+            );
+
+            localStorage.setItem(
+                "homeFinderPassword",
+                password
+            );
+
+            message.innerHTML =
+                "✅ Registration successful! You can now login.";
+
+        }
+
+        message.style.display = "block";
+    }
+
+
+    /* LOGIN */
+
+    function login() {
+
+        let username =
+            document.getElementById("loginUser").value;
+
+        let password =
+            document.getElementById("loginPass").value;
+
+        let savedUser =
+            localStorage.getItem("homeFinderUser");
+
+        let savedPassword =
+            localStorage.getItem("homeFinderPassword");
+
+        let message =
+            document.getElementById("loginMessage");
+
+        if (username === savedUser &&
+            password === savedPassword) {
+
+            message.innerHTML =
+                "✅ Login successful. Welcome " +
+                username + "!";
+
+        } else {
+
+            message.innerHTML =
+                "❌ Invalid username or password.";
+
+        }
+
+        message.style.display = "block";
+    }
+
+
+    /* SAVE SEARCH */
+
+    function saveSearch() {
+
+        let location =
+            document.getElementById("saveLocation").value;
+
+        let budget =
+            document.getElementById("saveBudget").value;
+
+        let type =
+            document.getElementById("saveType").value;
+
+        let message =
+            document.getElementById("saveMessage");
+
+        if (location === "" ||
+            budget === "" ||
+            type === "") {
+
+            message.innerHTML =
+                "Please enter all search criteria.";
+
+        } else {
+
+            localStorage.setItem(
+                "savedLocation",
+                location
+            );
+
+            localStorage.setItem(
+                "savedBudget",
+                budget
+            );
+
+            localStorage.setItem(
+                "savedType",
+                type
+            );
+
+            message.innerHTML =
+                "✅ Search criteria saved successfully!";
+
+        }
+
+        message.style.display = "block";
+    }
+
+
+    /* FAVORITES */
+
+    function addFavorite(property) {
+
+        let favorites =
+            JSON.parse(
+                localStorage.getItem("favorites")
+            ) || [];
+
+        if (!favorites.includes(property)) {
+
+            favorites.push(property);
+
+            localStorage.setItem(
+                "favorites",
+                JSON.stringify(favorites)
+            );
+
+            alert(
+                property +
+                " added to your favorites ❤️"
+            );
+
+        } else {
+
+            alert(
+                property +
+                " is already in your favorites."
+            );
+
+        }
+    }
+
+
+    /* BOOK PROPERTY */
+
+    function bookProperty(property) {
+
+        let name =
+            prompt(
+                "Enter your name to book a viewing for " +
+                property
+            );
+
+        if (name) {
+
+            alert(
+                "Viewing request submitted successfully!\n\n" +
+                "Property: " + property +
+                "\nBuyer: " + name
+            );
+        }
+    }
+
+
+    /* CONTACT AGENT */
+
+    function contactAgent(agent) {
+
+        alert(
+            "You selected agent: " +
+            agent +
+            "\n\nThe agent will contact you shortly."
+        );
+    }
+
+
+    /* MORTGAGE CALCULATOR */
+
+    function calculateEMI() {
+
+        let principal =
+            parseFloat(
+                document.getElementById("loanAmount").value
+            );
+
+        let annualRate =
+            parseFloat(
+                document.getElementById("interest").value
+            );
+
+        let years =
+            parseFloat(
+                document.getElementById("years").value
+            );
+
+        let result =
+            document.getElementById("emiResult");
+
+        if (!principal ||
+            !annualRate ||
+            !years) {
+
+            result.innerHTML =
+                "Please enter all loan details.";
+
+            result.style.display = "block";
+
+            return;
+        }
+
+        let monthlyRate =
+            annualRate / 12 / 100;
+
+        let months =
+            years * 12;
+
+        let emi =
+            principal *
+            monthlyRate *
+            Math.pow(
+                1 + monthlyRate,
+                months
+            ) /
+            (Math.pow(
+                1 + monthlyRate,
+                months
+            ) - 1);
+
+        result.innerHTML =
+            "💰 Estimated Monthly EMI: ₹" +
+            emi.toFixed(2);
+
+        result.style.display = "block";
+    }
+
+
+    /* VISITOR COUNTER */
+
+    let visitors =
+        parseInt(
+            localStorage.getItem("homeFinderVisitors")
+        ) || 0;
+
+    visitors++;
+
+    localStorage.setItem(
+        "homeFinderVisitors",
+        visitors
+    );
+
+    document.getElementById(
+        "visitorCount"
+    ).innerText = visitors;
+
+
+</script>
+
+</body>
+</html>

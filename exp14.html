@@ -1,0 +1,2584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ReNewMarket - Second Hand Marketplace</title>
+
+<style>
+
+/* RESET */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f3f8f5;
+    color:#333;
+}
+
+
+/* HEADER */
+
+header{
+    background:#176b4d;
+    color:white;
+
+    padding:18px 7%;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+}
+
+header h1{
+    font-size:28px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+
+    margin-left:18px;
+
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#b7f7d8;
+}
+
+
+/* HERO */
+
+.hero{
+
+    min-height:500px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.55)
+    ),
+
+    url("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1600&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    color:white;
+
+    padding:30px;
+}
+
+.hero h2{
+    font-size:50px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:19px;
+    margin-bottom:25px;
+}
+
+.hero button{
+    background:#2fbf71;
+    color:white;
+
+    border:none;
+
+    padding:14px 25px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin:5px;
+}
+
+.hero button:hover{
+    background:#209454;
+}
+
+
+/* GENERAL */
+
+section{
+    padding:55px 7%;
+}
+
+.section-title{
+    text-align:center;
+
+    color:#176b4d;
+
+    font-size:32px;
+
+    margin-bottom:30px;
+}
+
+
+/* SEARCH */
+
+.search-box{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.1);
+
+    max-width:1000px;
+
+    margin:auto;
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+}
+
+input,
+select,
+textarea{
+
+    width:100%;
+
+    padding:13px;
+
+    border:1px solid #ccc;
+
+    border-radius:6px;
+}
+
+.search-box input,
+.search-box select{
+
+    flex:1;
+
+    min-width:170px;
+}
+
+button{
+
+    background:#176b4d;
+
+    color:white;
+
+    border:none;
+
+    padding:12px 20px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+button:hover{
+    background:#0f5139;
+}
+
+
+/* CATEGORIES */
+
+.categories{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+.category{
+
+    background:white;
+
+    padding:25px;
+
+    text-align:center;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.08);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.category:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.12);
+}
+
+.category span{
+    font-size:45px;
+}
+
+.category h3{
+
+    color:#176b4d;
+
+    margin-top:12px;
+}
+
+
+/* PRODUCTS */
+
+.products{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(260px,1fr));
+
+    gap:25px;
+}
+
+.product{
+
+    background:white;
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.1);
+}
+
+.product img{
+
+    width:100%;
+
+    height:210px;
+
+    object-fit:cover;
+}
+
+.product-info{
+
+    padding:20px;
+}
+
+.product-info h3{
+
+    color:#176b4d;
+
+    margin-bottom:10px;
+}
+
+.product-info p{
+
+    margin:7px 0;
+}
+
+.price{
+
+    color:#e67e22;
+
+    font-size:21px;
+
+    font-weight:bold;
+}
+
+.product-info button{
+
+    width:100%;
+
+    margin-top:10px;
+}
+
+
+/* FORMS */
+
+.forms{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+}
+
+.form-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+}
+
+.form-box h2{
+
+    color:#176b4d;
+
+    margin-bottom:20px;
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea{
+
+    margin:8px 0;
+}
+
+.form-box button{
+
+    width:100%;
+
+    margin-top:10px;
+}
+
+.message{
+
+    display:none;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    background:#e8f5e9;
+
+    color:#256029;
+
+    border-radius:6px;
+}
+
+
+/* CART */
+
+.cart{
+
+    background:white;
+
+    max-width:750px;
+
+    margin:auto;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.1);
+}
+
+.cart-item{
+
+    padding:15px 0;
+
+    border-bottom:1px solid #ddd;
+}
+
+.total{
+
+    font-size:23px;
+
+    color:#176b4d;
+
+    font-weight:bold;
+
+    margin-top:20px;
+}
+
+
+/* ADMIN */
+
+.admin-section{
+
+    background:#eaf6ef;
+}
+
+.dashboard{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(200px,1fr));
+
+    gap:20px;
+}
+
+.dashboard-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:10px;
+
+    box-shadow:
+    0 4px 12px rgba(0,0,0,.08);
+}
+
+.dashboard-card h3{
+
+    color:#176b4d;
+}
+
+.number{
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#e67e22;
+
+    margin-top:10px;
+}
+
+
+/* ORDERS */
+
+.order-box{
+
+    max-width:1000px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:12px;
+
+    box-shadow:
+    0 4px 15px rgba(0,0,0,.08);
+
+    overflow-x:auto;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+}
+
+th{
+
+    background:#176b4d;
+
+    color:white;
+}
+
+th,td{
+
+    padding:13px;
+
+    border:1px solid #ddd;
+
+    text-align:center;
+}
+
+.status{
+
+    padding:6px 10px;
+
+    border-radius:5px;
+
+    background:#dff5e8;
+
+    color:#176b4d;
+
+    font-weight:bold;
+}
+
+
+/* SUSTAINABILITY */
+
+.sustainability{
+
+    background:
+    linear-gradient(
+        90deg,
+        #176b4d,
+        #2fbf71
+    );
+
+    color:white;
+
+    padding:40px;
+
+    border-radius:12px;
+
+    text-align:center;
+}
+
+.sustainability h2{
+
+    margin-bottom:12px;
+}
+
+.sustainability p{
+
+    line-height:1.6;
+}
+
+
+/* FOOTER */
+
+footer{
+
+    background:#104a36;
+
+    color:white;
+
+    padding:30px;
+
+    text-align:center;
+}
+
+footer p{
+
+    margin:8px;
+}
+
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+    header{
+
+        flex-direction:column;
+
+        gap:15px;
+    }
+
+    nav a{
+
+        font-size:13px;
+
+        margin:5px;
+    }
+
+    .hero h2{
+
+        font-size:35px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+<h1>♻️ ReNewMarket</h1>
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#categories">Categories</a>
+
+<a href="#products">Products</a>
+
+<a href="#orders">Orders</a>
+
+<a href="#login">Login</a>
+
+<a href="#admin">Admin</a>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section
+class="hero"
+id="home">
+
+<div>
+
+<h2>
+Buy. Sell. Reuse.
+</h2>
+
+<p>
+A trusted marketplace for buying and selling
+pre-loved products.
+</p>
+
+<button
+onclick="goTo('products')">
+
+Browse Products
+
+</button>
+
+<button
+onclick="goTo('sell')">
+
+Sell an Item
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<section>
+
+<h2 class="section-title">
+
+🔎 Find Pre-Loved Products
+
+</h2>
+
+
+<div class="search-box">
+
+<input
+type="text"
+id="search"
+placeholder="Search products...">
+
+
+<select id="categorySearch">
+
+<option value="">
+All Categories
+</option>
+
+<option>
+Electronics
+</option>
+
+<option>
+Furniture
+</option>
+
+<option>
+Clothing
+</option>
+
+<option>
+Collectibles
+</option>
+
+<option>
+Books
+</option>
+
+<option>
+Vehicles
+</option>
+
+</select>
+
+
+<select id="priceSearch">
+
+<option value="">
+Price Range
+</option>
+
+<option>
+Below ₹1,000
+</option>
+
+<option>
+₹1,000 - ₹5,000
+</option>
+
+<option>
+₹5,000 - ₹20,000
+</option>
+
+<option>
+Above ₹20,000
+</option>
+
+</select>
+
+
+<button onclick="searchProducts()">
+
+Search
+
+</button>
+
+</div>
+
+
+<div
+id="searchMessage"
+class="message"
+style="max-width:1000px;margin:20px auto;">
+
+</div>
+
+</section>
+
+
+<!-- CATEGORIES -->
+
+<section
+id="categories">
+
+<h2 class="section-title">
+
+🛍️ Product Categories
+
+</h2>
+
+
+<div class="categories">
+
+
+<div
+class="category"
+onclick="filterCategory('Electronics')">
+
+<span>📱</span>
+
+<h3>Electronics</h3>
+
+<p>
+Mobiles, laptops, cameras and more
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="filterCategory('Furniture')">
+
+<span>🛋️</span>
+
+<h3>Furniture</h3>
+
+<p>
+Tables, chairs, sofas and beds
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="filterCategory('Clothing')">
+
+<span>👕</span>
+
+<h3>Clothing</h3>
+
+<p>
+Fashion and accessories
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="filterCategory('Collectibles')">
+
+<span>🏺</span>
+
+<h3>Collectibles</h3>
+
+<p>
+Rare and valuable collectibles
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="filterCategory('Books')">
+
+<span>📚</span>
+
+<h3>Books</h3>
+
+<p>
+New and used books
+</p>
+
+</div>
+
+
+<div
+class="category"
+onclick="filterCategory('Vehicles')">
+
+<span>🚗</span>
+
+<h3>Vehicles</h3>
+
+<p>
+Cars, bikes and scooters
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- PRODUCTS -->
+
+<section
+id="products">
+
+<h2 class="section-title">
+
+⭐ Featured Second-Hand Products
+
+</h2>
+
+
+<div class="products">
+
+
+<!-- PRODUCT 1 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Used Laptop</h3>
+
+<p>
+Dell Laptop - Good Condition
+</p>
+
+<p>
+8GB RAM | 256GB SSD
+</p>
+
+<p class="price">
+₹25,000
+</p>
+
+<button
+onclick="addToCart('Used Laptop',25000)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 2 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Used Sofa</h3>
+
+<p>
+Comfortable 3-seater sofa
+</p>
+
+<p>
+Excellent condition
+</p>
+
+<p class="price">
+₹8,500
+</p>
+
+<button
+onclick="addToCart('Used Sofa',8500)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 3 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Designer Jacket</h3>
+
+<p>
+Premium branded jacket
+</p>
+
+<p>
+Used - Excellent condition
+</p>
+
+<p class="price">
+₹2,500
+</p>
+
+<button
+onclick="addToCart('Designer Jacket',2500)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 4 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Book Collection</h3>
+
+<p>
+Collection of classic novels
+</p>
+
+<p>
+10 books
+</p>
+
+<p class="price">
+₹1,200
+</p>
+
+<button
+onclick="addToCart('Book Collection',1200)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 5 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Smart Watch</h3>
+
+<p>
+Used smart watch
+</p>
+
+<p>
+Working condition
+</p>
+
+<p class="price">
+₹3,500
+</p>
+
+<button
+onclick="addToCart('Smart Watch',3500)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRODUCT 6 -->
+
+<div class="product">
+
+<img
+src="https://images.unsplash.com/photo-1513366884929-f0b3bed2d9f9?auto=format&fit=crop&w=800&q=80">
+
+<div class="product-info">
+
+<h3>Vintage Collectible</h3>
+
+<p>
+Rare vintage decoration item
+</p>
+
+<p>
+Good condition
+</p>
+
+<p class="price">
+₹4,800
+</p>
+
+<button
+onclick="addToCart('Vintage Collectible',4800)">
+
+Buy / Add to Cart
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SELL ITEM -->
+
+<section
+id="sell">
+
+<h2 class="section-title">
+
+📦 Sell Your Product
+
+</h2>
+
+
+<div class="form-box"
+style="max-width:700px;margin:auto;">
+
+
+<input
+type="text"
+id="sellerProduct"
+placeholder="Product Name">
+
+
+<select id="sellerCategory">
+
+<option>
+Electronics
+</option>
+
+<option>
+Furniture
+</option>
+
+<option>
+Clothing
+</option>
+
+<option>
+Collectibles
+</option>
+
+<option>
+Books
+</option>
+
+<option>
+Vehicles
+</option>
+
+</select>
+
+
+<input
+type="number"
+id="sellerPrice"
+placeholder="Selling Price">
+
+
+<textarea
+id="sellerDescription"
+placeholder="Product Description">
+
+</textarea>
+
+
+<input
+type="text"
+id="sellerContact"
+placeholder="Contact Number">
+
+
+<button onclick="createListing()">
+
+Create Listing
+
+</button>
+
+
+<div
+id="listingMessage"
+class="message">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CART -->
+
+<section>
+
+<h2 class="section-title">
+
+🛒 Shopping Cart
+
+</h2>
+
+
+<div class="cart">
+
+<div id="cartItems">
+
+<p>
+Your cart is empty.
+</p>
+
+</div>
+
+
+<div
+id="cartTotal"
+class="total">
+
+Total: ₹0
+
+</div>
+
+
+<br>
+
+
+<button onclick="checkout()">
+
+Proceed to Payment
+
+</button>
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section
+id="login">
+
+<h2 class="section-title">
+
+👤 User Management
+
+</h2>
+
+
+<div class="forms">
+
+
+<!-- USER LOGIN -->
+
+<div class="form-box">
+
+<h2>
+🔐 User Login
+</h2>
+
+
+<input
+type="text"
+id="username"
+placeholder="Username">
+
+
+<input
+type="password"
+id="password"
+placeholder="Password">
+
+
+<button onclick="userLogin()">
+
+Login
+
+</button>
+
+
+<div
+id="loginMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- REGISTER -->
+
+<div class="form-box">
+
+<h2>
+📝 Register User
+</h2>
+
+
+<input
+type="text"
+id="regName"
+placeholder="Full Name">
+
+
+<input
+type="email"
+id="regEmail"
+placeholder="Email">
+
+
+<input
+type="text"
+id="regUsername"
+placeholder="Username">
+
+
+<input
+type="password"
+id="regPassword"
+placeholder="Password">
+
+
+<button onclick="registerUser()">
+
+Register
+
+</button>
+
+
+<div
+id="registerMessage"
+class="message">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FAVORITES -->
+
+<section>
+
+<h2 class="section-title">
+
+❤️ Favorite Items
+
+</h2>
+
+
+<div class="form-box"
+style="max-width:700px;margin:auto;">
+
+<input
+type="text"
+id="favoriteItem"
+placeholder="Enter item name">
+
+
+<button onclick="addFavorite()">
+
+Add to Favorites
+
+</button>
+
+
+<div
+id="favoriteMessage"
+class="message">
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- ORDERS -->
+
+<section
+id="orders">
+
+<h2 class="section-title">
+
+📦 Order Management
+
+</h2>
+
+
+<div class="order-box">
+
+<table>
+
+<tr>
+
+<th>Order ID</th>
+
+<th>Product</th>
+
+<th>Amount</th>
+
+<th>Logistics Status</th>
+
+<th>Action</th>
+
+</tr>
+
+
+<tr>
+
+<td>#RN1001</td>
+
+<td>Used Laptop</td>
+
+<td>₹25,000</td>
+
+<td>
+
+<select
+id="status1"
+onchange="changeStatus('status1','orderStatus1')">
+
+<option>
+Shipped
+</option>
+
+<option>
+Received
+</option>
+
+</select>
+
+</td>
+
+<td>
+
+<button
+onclick="deleteOrder('row1')">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr id="row1">
+
+<td>#RN1002</td>
+
+<td>Used Sofa</td>
+
+<td>₹8,500</td>
+
+<td>
+
+<select
+id="status2"
+onchange="changeStatus('status2','orderStatus2')">
+
+<option>
+Shipped
+</option>
+
+<option>
+Received
+</option>
+
+</select>
+
+</td>
+
+<td>
+
+<button
+onclick="deleteOrder('row1')">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+</table>
+
+</div>
+
+</section>
+
+
+<!-- ADMIN -->
+
+<section
+id="admin"
+class="admin-section">
+
+<h2 class="section-title">
+
+⚙️ Administrator Panel
+
+</h2>
+
+
+<div class="forms">
+
+
+<!-- ADMIN LOGIN -->
+
+<div class="form-box">
+
+<h2>
+🔐 Administrator Login
+</h2>
+
+
+<input
+type="text"
+id="adminUsername"
+placeholder="Admin Username">
+
+
+<input
+type="password"
+id="adminPassword"
+placeholder="Admin Password">
+
+
+<button onclick="adminLogin()">
+
+Login
+
+</button>
+
+
+<div
+id="adminMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- EDIT USER -->
+
+<div class="form-box">
+
+<h2>
+✏️ Edit User
+</h2>
+
+
+<input
+type="text"
+id="editUser"
+placeholder="Username">
+
+
+<input
+type="text"
+id="newUserName"
+placeholder="New Name">
+
+
+<button onclick="editUser()">
+
+Update User
+
+</button>
+
+
+<div
+id="editMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- DELETE USER -->
+
+<div class="form-box">
+
+<h2>
+🗑️ Delete User
+</h2>
+
+
+<input
+type="text"
+id="deleteUserName"
+placeholder="Username">
+
+
+<button onclick="deleteUser()">
+
+Delete User
+
+</button>
+
+
+<div
+id="deleteUserMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- ADD CATEGORY -->
+
+<div class="form-box">
+
+<h2>
+➕ Add Category
+</h2>
+
+
+<input
+type="text"
+id="newCategory"
+placeholder="Category Name">
+
+
+<button onclick="addCategory()">
+
+Add Category
+
+</button>
+
+
+<div
+id="categoryMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- DELETE CATEGORY -->
+
+<div class="form-box">
+
+<h2>
+❌ Delete Category
+</h2>
+
+
+<input
+type="text"
+id="deleteCategoryName"
+placeholder="Category Name">
+
+
+<button onclick="deleteCategory()">
+
+Delete Category
+
+</button>
+
+
+<div
+id="deleteCategoryMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- EDIT COMMODITY -->
+
+<div class="form-box">
+
+<h2>
+✏️ Edit Commodity
+</h2>
+
+
+<input
+type="text"
+id="commodityName"
+placeholder="Commodity Name">
+
+
+<input
+type="number"
+id="commodityPrice"
+placeholder="New Price">
+
+
+<button onclick="editCommodity()">
+
+Update Commodity
+
+</button>
+
+
+<div
+id="commodityMessage"
+class="message">
+
+</div>
+
+</div>
+
+
+<!-- DELETE COMMODITY -->
+
+<div class="form-box">
+
+<h2>
+🗑️ Delete Commodity
+</h2>
+
+
+<input
+type="text"
+id="deleteCommodity"
+placeholder="Commodity Name">
+
+
+<button onclick="deleteCommodity()">
+
+Delete Commodity
+
+</button>
+
+
+<div
+id="commodityDeleteMessage"
+class="message">
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+
+<section>
+
+<h2 class="section-title">
+
+📊 Admin Dashboard
+
+</h2>
+
+
+<div class="dashboard">
+
+
+<div class="dashboard-card">
+
+<h3>
+👥 Registered Users
+</h3>
+
+<div
+id="userCount"
+class="number">
+
+0
+
+</div>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<h3>
+📦 Products
+</h3>
+
+<div
+id="productCount"
+class="number">
+
+6
+
+</div>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<h3>
+🛒 Orders
+</h3>
+
+<div
+id="orderCount"
+class="number">
+
+2
+
+</div>
+
+</div>
+
+
+<div class="dashboard-card">
+
+<h3>
+💰 Sales
+</h3>
+
+<div class="number">
+
+₹33,500
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SUSTAINABILITY -->
+
+<section>
+
+<div class="sustainability">
+
+<h2>
+🌱 Give Products a Second Life
+</h2>
+
+<p>
+
+ReNewMarket promotes sustainability by helping
+people reuse, recycle and resell products instead
+of throwing them away.
+
+Every second-hand purchase helps reduce waste
+and supports a greener future.
+
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>
+♻️ ReNewMarket
+</h2>
+
+<p>
+Buy • Sell • Reuse • Sustain
+</p>
+
+<p>
+📧 support@renewmarket.com
+</p>
+
+<p>
+📞 +91 98765 43210
+</p>
+
+<p>
+© 2026 ReNewMarket. All Rights Reserved.
+</p>
+
+</footer>
+
+
+<script>
+
+
+/* GO TO SECTION */
+
+function goTo(id){
+
+document
+.getElementById(id)
+.scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+let search =
+document.getElementById("search").value;
+
+let category =
+document.getElementById("categorySearch").value;
+
+let price =
+document.getElementById("priceSearch").value;
+
+let message =
+document.getElementById("searchMessage");
+
+
+if(search === "" &&
+category === "" &&
+price === ""){
+
+message.innerHTML =
+"Please enter a search condition.";
+
+}else{
+
+message.innerHTML =
+"🔎 Searching for <b>"
++
+(search || "all products")
++
+"</b> "
++
+(category ?
+"under " + category :
+"")
++
+" "
++
+(price ?
+"within " + price :
+"");
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* CATEGORY */
+
+function filterCategory(category){
+
+alert(
+"Showing products from "
++
+category
++
+" category."
+);
+
+goTo("products");
+
+}
+
+
+/* CART */
+
+let cart=[];
+
+
+function addToCart(name,price){
+
+cart.push({
+name:name,
+price:price
+});
+
+displayCart();
+
+alert(
+name
++
+" added to cart successfully."
+);
+
+}
+
+
+function displayCart(){
+
+let container =
+document.getElementById("cartItems");
+
+let total=0;
+
+container.innerHTML="";
+
+
+if(cart.length===0){
+
+container.innerHTML=
+"<p>Your cart is empty.</p>";
+
+}else{
+
+cart.forEach(function(item,index){
+
+total+=item.price;
+
+container.innerHTML +=
+
+"<div class='cart-item'>"
+
++
+"<strong>"
++
+item.name
++
+"</strong> - ₹"
++
+item.price
++
+
+" <button onclick='removeCart("
++
+index
++
+")'>Remove</button>"
+
++
+"</div>";
+
+});
+
+}
+
+
+document.getElementById(
+"cartTotal"
+).innerText=
+"Total: ₹"+total;
+
+}
+
+
+function removeCart(index){
+
+cart.splice(index,1);
+
+displayCart();
+
+}
+
+
+/* CHECKOUT */
+
+function checkout(){
+
+if(cart.length===0){
+
+alert(
+"Your cart is empty."
+);
+
+return;
+
+}
+
+alert(
+"Proceeding to secure payment."
+);
+
+}
+
+
+/* USER REGISTRATION */
+
+function registerUser(){
+
+let name =
+document.getElementById("regName").value;
+
+let email =
+document.getElementById("regEmail").value;
+
+let username =
+document.getElementById("regUsername").value;
+
+let password =
+document.getElementById("regPassword").value;
+
+let message =
+document.getElementById("registerMessage");
+
+
+if(name==="" ||
+email==="" ||
+username==="" ||
+password===""){
+
+message.innerHTML=
+"Please fill all registration fields.";
+
+}else{
+
+localStorage.setItem(
+"renewUsername",
+username
+);
+
+localStorage.setItem(
+"renewPassword",
+password
+);
+
+localStorage.setItem(
+"renewName",
+name
+);
+
+
+let count =
+parseInt(
+localStorage.getItem("renewUsers")
+) || 0;
+
+count++;
+
+localStorage.setItem(
+"renewUsers",
+count
+);
+
+document.getElementById(
+"userCount"
+).innerText=count;
+
+
+message.innerHTML=
+"✅ User registered successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* USER LOGIN */
+
+function userLogin(){
+
+let username =
+document.getElementById("username").value;
+
+let password =
+document.getElementById("password").value;
+
+let savedUsername =
+localStorage.getItem("renewUsername");
+
+let savedPassword =
+localStorage.getItem("renewPassword");
+
+let message =
+document.getElementById("loginMessage");
+
+
+if(username===savedUsername &&
+password===savedPassword){
+
+message.innerHTML=
+"✅ Login successful. Welcome to ReNewMarket!";
+
+}else{
+
+message.innerHTML=
+"❌ Invalid username or password.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* SELL ITEM */
+
+function createListing(){
+
+let product =
+document.getElementById("sellerProduct").value;
+
+let category =
+document.getElementById("sellerCategory").value;
+
+let price =
+document.getElementById("sellerPrice").value;
+
+let description =
+document.getElementById("sellerDescription").value;
+
+let contact =
+document.getElementById("sellerContact").value;
+
+let message =
+document.getElementById("listingMessage");
+
+
+if(product==="" ||
+price==="" ||
+description==="" ||
+contact===""){
+
+message.innerHTML=
+"Please fill all listing details.";
+
+}else{
+
+message.innerHTML=
+"✅ Listing created successfully!<br>"
++
+"Product: "
++
+product
++
+"<br>Category: "
++
+category
++
+"<br>Price: ₹"
++
+price;
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* FAVORITES */
+
+function addFavorite(){
+
+let item =
+document.getElementById("favoriteItem").value;
+
+let message =
+document.getElementById("favoriteMessage");
+
+
+if(item===""){
+
+message.innerHTML=
+"Please enter an item name.";
+
+}else{
+
+localStorage.setItem(
+"favoriteItem",
+item
+);
+
+message.innerHTML=
+"❤️ "
++
+item
++
+" added to favorites.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin(){
+
+let username =
+document.getElementById("adminUsername").value;
+
+let password =
+document.getElementById("adminPassword").value;
+
+let message =
+document.getElementById("adminMessage");
+
+
+if(username==="admin" &&
+password==="admin123"){
+
+message.innerHTML=
+"✅ Administrator login successful.";
+
+}else{
+
+message.innerHTML=
+"❌ Invalid administrator credentials.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* EDIT USER */
+
+function editUser(){
+
+let user =
+document.getElementById("editUser").value;
+
+let newName =
+document.getElementById("newUserName").value;
+
+let message =
+document.getElementById("editMessage");
+
+
+if(user==="" ||
+newName===""){
+
+message.innerHTML=
+"Please enter username and new name.";
+
+}else{
+
+message.innerHTML=
+"✅ User "
++
+user
++
+" updated successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* DELETE USER */
+
+function deleteUser(){
+
+let user =
+document.getElementById("deleteUserName").value;
+
+let message =
+document.getElementById("deleteUserMessage");
+
+
+if(user===""){
+
+message.innerHTML=
+"Please enter username.";
+
+}else{
+
+message.innerHTML=
+"🗑️ User "
++
+user
++
+" deleted successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* ADD CATEGORY */
+
+function addCategory(){
+
+let category =
+document.getElementById("newCategory").value;
+
+let message =
+document.getElementById("categoryMessage");
+
+
+if(category===""){
+
+message.innerHTML=
+"Please enter category name.";
+
+}else{
+
+message.innerHTML=
+"✅ Category "
++
+category
++
+" added successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* DELETE CATEGORY */
+
+function deleteCategory(){
+
+let category =
+document.getElementById("deleteCategoryName").value;
+
+let message =
+document.getElementById(
+"deleteCategoryMessage"
+);
+
+
+if(category===""){
+
+message.innerHTML=
+"Please enter category name.";
+
+}else{
+
+message.innerHTML=
+"🗑️ Category "
++
+category
++
+" deleted successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* EDIT COMMODITY */
+
+function editCommodity(){
+
+let commodity =
+document.getElementById("commodityName").value;
+
+let price =
+document.getElementById("commodityPrice").value;
+
+let message =
+document.getElementById(
+"commodityMessage"
+);
+
+
+if(commodity==="" ||
+price===""){
+
+message.innerHTML=
+"Please enter commodity and price.";
+
+}else{
+
+message.innerHTML=
+"✅ Commodity "
++
+commodity
++
+" updated to ₹"
++
+price
++
+".";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* DELETE COMMODITY */
+
+function deleteCommodity(){
+
+let commodity =
+document.getElementById("deleteCommodity").value;
+
+let message =
+document.getElementById(
+"commodityDeleteMessage"
+);
+
+
+if(commodity===""){
+
+message.innerHTML=
+"Please enter commodity name.";
+
+}else{
+
+message.innerHTML=
+"🗑️ Commodity "
++
+commodity
++
+" deleted successfully.";
+
+}
+
+message.style.display="block";
+
+}
+
+
+/* CHANGE LOGISTICS STATUS */
+
+function changeStatus(selectId,statusId){
+
+let value =
+document.getElementById(selectId).value;
+
+alert(
+"Logistics status changed to "
++
+value
+);
+
+}
+
+
+/* DELETE ORDER */
+
+function deleteOrder(rowId){
+
+let rows =
+document.querySelectorAll(
+"#orders table tr"
+);
+
+if(rows.length > 2){
+
+rows[2].remove();
+
+}
+
+alert(
+"Order deleted successfully."
+);
+
+}
+
+
+/* LOAD DATA */
+
+window.onload=function(){
+
+let users =
+localStorage.getItem("renewUsers")
+|| 0;
+
+document.getElementById(
+"userCount"
+).innerText=users;
+
+};
+
+
+</script>
+
+
+</body>
+</html>

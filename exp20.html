@@ -1,0 +1,2217 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RentRide - Vehicle Rental System</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f5f7fa;
+    color:#1f2937;
+}
+
+header{
+    background:#111827;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:28px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#38bdf8;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#38bdf8;
+}
+
+.hero{
+    min-height:440px;
+    background:
+    linear-gradient(rgba(17,24,39,.82),rgba(17,24,39,.82)),
+    url("https://images.unsplash.com/photo-1503376780353-7e6692767b70")
+    center/cover;
+
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:60px 8%;
+}
+
+.hero-content{
+    max-width:700px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+}
+
+.btn{
+    border:none;
+    padding:11px 20px;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:6px;
+}
+
+.primary{
+    background:#0284c7;
+    color:white;
+}
+
+.secondary{
+    background:#facc15;
+    color:#222;
+}
+
+.success{
+    background:#16a34a;
+    color:white;
+}
+
+.danger{
+    background:#dc2626;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+.section{
+    padding:50px 0;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    color:#111827;
+    font-size:32px;
+}
+
+.title p{
+    color:#6b7280;
+    margin-top:8px;
+}
+
+.search-box{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr 1fr;
+    gap:15px;
+}
+
+input,select,textarea{
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+    width:100%;
+}
+
+.vehicles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+    margin-top:30px;
+}
+
+.vehicle{
+    background:white;
+    border-radius:13px;
+    overflow:hidden;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.vehicle:hover{
+    transform:translateY(-6px);
+}
+
+.vehicle-image{
+    height:190px;
+    background:#e0f2fe;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:85px;
+}
+
+.vehicle-body{
+    padding:20px;
+}
+
+.vehicle-body h3{
+    margin-bottom:8px;
+}
+
+.price{
+    color:#0284c7;
+    font-size:22px;
+    font-weight:bold;
+}
+
+.form-box{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 14px rgba(0,0,0,.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    border-left:5px solid #0284c7;
+    box-shadow:0 4px 10px rgba(0,0,0,.07);
+}
+
+.stat h2{
+    color:#0284c7;
+    margin-top:10px;
+    font-size:30px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#111827;
+    color:white;
+    padding:13px;
+    text-align:left;
+}
+
+td{
+    padding:13px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.approved{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.rejected{
+    background:#fee2e2;
+    color:#991b1b;
+}
+
+.reviews{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.review{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.07);
+}
+
+.stars{
+    color:#eab308;
+    margin:8px 0;
+}
+
+footer{
+    background:#030712;
+    color:white;
+    padding:40px 8%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+footer p{
+    color:#d1d5db;
+    line-height:1.8;
+}
+
+@media(max-width:900px){
+
+    .vehicles,
+    .reviews{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .dashboard{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .search-box{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .vehicles,
+    .reviews,
+    .dashboard,
+    .search-box,
+    .form-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+🚗 Rent<span>Ride</span>
+</div>
+
+<nav>
+
+<a href="#home">Home</a>
+
+<a href="#search">Search</a>
+
+<a href="#vehicles">Vehicles</a>
+
+<a href="#booking">Booking</a>
+
+<a href="#admin">Admin</a>
+
+<a href="#profile">Profile</a>
+
+</nav>
+
+</header>
+
+
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<h1>Drive Your Journey</h1>
+
+<p>
+Rent cars, trucks and SUVs easily with RentRide.
+Search vehicles, choose your preferred rental period,
+book online and manage your reservations from one place.
+</p>
+
+<button
+class="btn secondary"
+onclick="document.getElementById('search').scrollIntoView()">
+
+Search Vehicles
+
+</button>
+
+<button
+class="btn"
+style="background:white;color:#111827"
+onclick="document.getElementById('booking').scrollIntoView()">
+
+Book Now
+
+</button>
+
+</div>
+
+</section>
+
+
+
+<!-- SEARCH -->
+
+<section id="search" class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>🔍 Search Vehicles</h2>
+
+<p>Find the perfect vehicle for your journey</p>
+
+</div>
+
+
+<div class="search-box">
+
+<input
+type="text"
+id="vehicleSearch"
+placeholder="Search vehicle..."
+onkeyup="searchVehicles()">
+
+
+<select id="vehicleType"
+onchange="filterVehicles()">
+
+<option value="All">All Types</option>
+
+<option value="Car">Car</option>
+
+<option value="SUV">SUV</option>
+
+<option value="Truck">Truck</option>
+
+</select>
+
+
+<select id="locationFilter">
+
+<option>Chennai</option>
+<option>Bangalore</option>
+<option>Coimbatore</option>
+<option>Madurai</option>
+
+</select>
+
+
+<select id="duration">
+
+<option>1 Day</option>
+<option>2 Days</option>
+<option>3 Days</option>
+<option>7 Days</option>
+
+</select>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- VEHICLES -->
+
+<section id="vehicles" class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>🚘 Available Vehicles</h2>
+
+</div>
+
+
+<div class="vehicles">
+
+
+<div class="vehicle"
+data-type="Car"
+data-name="Toyota Sedan">
+
+<div class="vehicle-image">
+🚘
+</div>
+
+<div class="vehicle-body">
+
+<h3>Toyota Sedan</h3>
+
+<p>Automatic • 5 Seats • Petrol</p>
+
+<br>
+
+<span class="price">
+₹2,500/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Toyota Sedan',2500)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="vehicle"
+data-type="SUV"
+data-name="Toyota SUV">
+
+<div class="vehicle-image">
+🚙
+</div>
+
+<div class="vehicle-body">
+
+<h3>Toyota SUV</h3>
+
+<p>Automatic • 7 Seats • Diesel</p>
+
+<br>
+
+<span class="price">
+₹4,500/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Toyota SUV',4500)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="vehicle"
+data-type="Truck"
+data-name="Delivery Truck">
+
+<div class="vehicle-image">
+🚚
+</div>
+
+<div class="vehicle-body">
+
+<h3>Delivery Truck</h3>
+
+<p>Manual • Heavy Load • Diesel</p>
+
+<br>
+
+<span class="price">
+₹6,000/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Delivery Truck',6000)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="vehicle"
+data-type="Car"
+data-name="Honda City">
+
+<div class="vehicle-image">
+🚗
+</div>
+
+<div class="vehicle-body">
+
+<h3>Honda City</h3>
+
+<p>Automatic • 5 Seats • Petrol</p>
+
+<br>
+
+<span class="price">
+₹2,200/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Honda City',2200)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="vehicle"
+data-type="SUV"
+data-name="Mahindra SUV">
+
+<div class="vehicle-image">
+🚙
+</div>
+
+<div class="vehicle-body">
+
+<h3>Mahindra SUV</h3>
+
+<p>Manual • 7 Seats • Diesel</p>
+
+<br>
+
+<span class="price">
+₹3,800/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Mahindra SUV',3800)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="vehicle"
+data-type="Truck"
+data-name="Mini Truck">
+
+<div class="vehicle-image">
+🚛
+</div>
+
+<div class="vehicle-body">
+
+<h3>Mini Truck</h3>
+
+<p>Manual • Cargo • Diesel</p>
+
+<br>
+
+<span class="price">
+₹4,000/day
+</span>
+
+<br>
+
+<button
+class="btn primary"
+onclick="selectVehicle('Mini Truck',4000)">
+
+Book Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- USER REGISTRATION -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>👤 User Registration / Login</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+placeholder="Customer name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Customer Number</label>
+
+<input
+type="tel"
+placeholder="Mobile number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+placeholder="Email">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input
+type="password"
+placeholder="Password">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Address</label>
+
+<textarea
+placeholder="Enter address"></textarea>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="register()">
+
+Register
+
+</button>
+
+
+<button
+class="btn success"
+onclick="login()">
+
+Login
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- BOOKING -->
+
+<section id="booking" class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>📅 Vehicle Booking</h2>
+
+<p>Make your vehicle reservation</p>
+
+</div>
+
+
+<div class="form-box">
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Customer Name</label>
+
+<input
+type="text"
+id="customerName"
+placeholder="Enter name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Customer Number</label>
+
+<input
+type="tel"
+placeholder="Mobile number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Address</label>
+
+<input
+type="text"
+placeholder="Address">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Vehicle Type</label>
+
+<select>
+
+<option>Car</option>
+<option>SUV</option>
+<option>Truck</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Selected Vehicle</label>
+
+<input
+type="text"
+id="selectedVehicle"
+placeholder="Select vehicle above">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Rental Start Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Rental End Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Pickup Location</label>
+
+<input
+type="text"
+placeholder="Pickup location">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Special Requirements</label>
+
+<textarea
+placeholder="Additional requirements"></textarea>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="makeBooking()">
+
+Confirm Booking
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- CHECK-IN -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>📝 Check-in Form</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Booking ID</label>
+
+<input
+type="text"
+placeholder="RR1001">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Driving License Number</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Pickup Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Pickup Time</label>
+
+<input type="time">
+
+</div>
+
+</div>
+
+
+<button
+class="btn success"
+onclick="checkin()">
+
+Submit Check-in
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- BOOKING STATUS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>📋 My Booking Status</h2>
+
+</div>
+
+
+<table>
+
+<tr>
+
+<th>Booking ID</th>
+<th>Vehicle</th>
+<th>Date</th>
+<th>Amount</th>
+<th>Status</th>
+
+</tr>
+
+
+<tr>
+
+<td>RR1001</td>
+<td>Toyota Sedan</td>
+<td>12-Aug-2026</td>
+<td>₹2,500</td>
+
+<td>
+<span class="status approved">
+Approved
+</span>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>RR1002</td>
+<td>Toyota SUV</td>
+<td>15-Aug-2026</td>
+<td>₹4,500</td>
+
+<td>
+<span class="status pending">
+Pending
+</span>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- APPOINTMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>⏰ Schedule Appointment</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Vehicle</label>
+
+<select>
+
+<option>Toyota Sedan</option>
+<option>Toyota SUV</option>
+<option>Honda City</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Appointment Date</label>
+
+<input type="date">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Preferred Time</label>
+
+<input type="time">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Service Type</label>
+
+<select>
+
+<option>Vehicle Pickup</option>
+<option>Vehicle Check-in</option>
+<option>Vehicle Return</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="scheduleAppointment()">
+
+Schedule Timing
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- PAST BOOKINGS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>📚 Past Appointment / Rental History</h2>
+
+</div>
+
+
+<table>
+
+<tr>
+
+<th>Booking ID</th>
+<th>Vehicle</th>
+<th>Rental Period</th>
+<th>Amount</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>RR0801</td>
+<td>Honda City</td>
+<td>05-Aug to 06-Aug</td>
+<td>₹4,400</td>
+
+<td>
+<span class="status approved">
+Completed
+</span>
+</td>
+
+</tr>
+
+<tr>
+
+<td>RR0702</td>
+<td>Mahindra SUV</td>
+<td>01-Aug to 03-Aug</td>
+<td>₹11,400</td>
+
+<td>
+<span class="status approved">
+Completed
+</span>
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- REVIEWS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>⭐ Customer Reviews</h2>
+
+</div>
+
+
+<div class="reviews">
+
+
+<div class="review">
+
+<h3>Ravi Kumar</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+Excellent vehicle condition and very easy booking process.
+</p>
+
+</div>
+
+
+<div class="review">
+
+<h3>Priya Sharma</h3>
+
+<div class="stars">
+★★★★☆
+</div>
+
+<p>
+Good service and quick booking confirmation.
+</p>
+
+</div>
+
+
+<div class="review">
+
+<h3>Arun Kumar</h3>
+
+<div class="stars">
+★★★★★
+</div>
+
+<p>
+The SUV was clean and comfortable.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADD REVIEW -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>⭐ Submit Review</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Your Name</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Rating</label>
+
+<select>
+
+<option>★★★★★</option>
+<option>★★★★☆</option>
+<option>★★★☆☆</option>
+<option>★★☆☆☆</option>
+<option>★☆☆☆☆</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Review</label>
+
+<textarea
+placeholder="Write your review"></textarea>
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="submitReview()">
+
+Submit Review
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN DASHBOARD -->
+
+<section id="admin" class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>⚙️ Admin Dashboard</h2>
+
+<p>Manage RentRide operations</p>
+
+</div>
+
+
+<div class="dashboard">
+
+
+<div class="stat">
+
+<h4>Total Vehicles</h4>
+
+<h2>85</h2>
+
+</div>
+
+
+<div class="stat">
+
+<h4>Total Users</h4>
+
+<h2>1,250</h2>
+
+</div>
+
+
+<div class="stat">
+
+<h4>Total Bookings</h4>
+
+<h2>3,850</h2>
+
+</div>
+
+
+<div class="stat">
+
+<h4>Revenue</h4>
+
+<h2>₹28.5L</h2>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN LOGIN -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>🔐 Admin Login</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Admin Username</label>
+
+<input type="text"
+placeholder="Username">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Password</label>
+
+<input type="password"
+placeholder="Password">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="adminLogin()">
+
+Admin Login
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADD VEHICLE -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>➕ Add Vehicle</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Vehicle Name</label>
+
+<input type="text"
+placeholder="Vehicle name">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Vehicle Type</label>
+
+<select>
+
+<option>Car</option>
+<option>SUV</option>
+<option>Truck</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Price Per Day</label>
+
+<input type="number">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input type="text">
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Vehicle Description</label>
+
+<textarea></textarea>
+
+</div>
+
+<div class="form-group full">
+
+<label>Vehicle Image</label>
+
+<input type="file"
+accept="image/*">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="addVehicle()">
+
+Add Vehicle
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN BOOKING MANAGEMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>📊 Manage Booking Details</h2>
+
+</div>
+
+
+<table>
+
+<tr>
+
+<th>Booking ID</th>
+<th>User</th>
+<th>Vehicle</th>
+<th>Customer No.</th>
+<th>Amount</th>
+<th>Status</th>
+<th>Action</th>
+
+</tr>
+
+
+<tr>
+
+<td>RR1001</td>
+<td>Ravi</td>
+<td>Toyota Sedan</td>
+<td>9876543210</td>
+<td>₹2,500</td>
+
+<td>
+<span class="status pending">
+Pending
+</span>
+</td>
+
+<td>
+
+<button
+class="btn success"
+onclick="approveBooking()">
+
+Approve
+
+</button>
+
+<button
+class="btn danger"
+onclick="rejectBooking()">
+
+Reject
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>RR1002</td>
+<td>Priya</td>
+<td>Toyota SUV</td>
+<td>9876501234</td>
+<td>₹4,500</td>
+
+<td>
+<span class="status approved">
+Approved
+</span>
+</td>
+
+<td>
+
+<button
+class="btn primary"
+onclick="viewBooking()">
+
+View
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN VEHICLE MANAGEMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+
+<h2>🚘 Manage Vehicle Details</h2>
+
+</div>
+
+
+<table>
+
+<tr>
+
+<th>Vehicle ID</th>
+<th>Vehicle</th>
+<th>Type</th>
+<th>Price</th>
+<th>Location</th>
+<th>Action</th>
+
+</tr>
+
+
+<tr>
+
+<td>V001</td>
+<td>Toyota Sedan</td>
+<td>Car</td>
+<td>₹2,500</td>
+<td>Chennai</td>
+
+<td>
+
+<button
+class="btn primary"
+onclick="editVehicle()">
+
+Edit
+
+</button>
+
+<button
+class="btn danger"
+onclick="deleteVehicle()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>V002</td>
+<td>Toyota SUV</td>
+<td>SUV</td>
+<td>₹4,500</td>
+<td>Chennai</td>
+
+<td>
+
+<button
+class="btn primary"
+onclick="editVehicle()">
+
+Edit
+
+</button>
+
+<button
+class="btn danger"
+onclick="deleteVehicle()">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- USER PROFILE -->
+
+<section id="profile" class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+
+<h2>👤 My Profile</h2>
+
+</div>
+
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Name</label>
+
+<input
+type="text"
+value="Ravi Kumar">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Customer Number</label>
+
+<input
+type="tel"
+value="9876543210">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+value="ravi@example.com">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Location</label>
+
+<input
+type="text"
+value="Chennai">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="updateProfile()">
+
+Update Profile
+
+</button>
+
+<button
+class="btn danger"
+onclick="logout()">
+
+Logout
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+
+<h2>🚗 RentRide</h2>
+
+<p>
+Easy and reliable vehicle rental service
+for cars, SUVs and trucks.
+</p>
+
+</div>
+
+
+<div>
+
+<h3>Quick Links</h3>
+
+<p>Search Vehicles</p>
+<p>My Bookings</p>
+<p>Rental History</p>
+<p>Reviews</p>
+
+</div>
+
+
+<div>
+
+<h3>Contact</h3>
+
+<p>📞 +91 98765 43210</p>
+<p>✉ support@rentrid​e.com</p>
+<p>📍 Chennai, India</p>
+
+</div>
+
+</div>
+
+<br>
+<hr>
+<br>
+
+<center>
+
+<p>© 2026 RentRide. All Rights Reserved.</p>
+
+</center>
+
+</footer>
+
+
+
+<script>
+
+/* SEARCH */
+
+function searchVehicles(){
+
+    let search =
+    document.getElementById("vehicleSearch")
+    .value.toLowerCase();
+
+    let vehicles =
+    document.querySelectorAll(".vehicle");
+
+    vehicles.forEach(function(vehicle){
+
+        let name =
+        vehicle
+        .getAttribute("data-name")
+        .toLowerCase();
+
+        vehicle.style.display =
+        name.includes(search)
+        ? "block"
+        : "none";
+
+    });
+
+}
+
+
+/* FILTER */
+
+function filterVehicles(){
+
+    let type =
+    document.getElementById("vehicleType")
+    .value;
+
+    let vehicles =
+    document.querySelectorAll(".vehicle");
+
+    vehicles.forEach(function(vehicle){
+
+        let vehicleType =
+        vehicle.getAttribute("data-type");
+
+        if(type === "All" || vehicleType === type){
+
+            vehicle.style.display = "block";
+
+        }else{
+
+            vehicle.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* VEHICLE SELECTION */
+
+function selectVehicle(name,price){
+
+    document
+    .getElementById("selectedVehicle")
+    .value = name;
+
+    document
+    .getElementById("booking")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+    alert(
+        name +
+        " selected.\nPrice: ₹" +
+        price +
+        " per day."
+    );
+
+}
+
+
+/* USER */
+
+function register(){
+
+    alert(
+        "Registration successful!"
+    );
+
+}
+
+function login(){
+
+    alert(
+        "User login successful!"
+    );
+
+}
+
+
+/* BOOKING */
+
+function makeBooking(){
+
+    let vehicle =
+    document
+    .getElementById("selectedVehicle")
+    .value;
+
+    if(vehicle === ""){
+
+        alert(
+            "Please select a vehicle first."
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Booking submitted successfully!\n\n" +
+        "Booking ID: RR" +
+        Math.floor(1000 + Math.random()*9000) +
+        "\nVehicle: " +
+        vehicle
+    );
+
+}
+
+
+/* CHECK-IN */
+
+function checkin(){
+
+    alert(
+        "Check-in form submitted successfully!"
+    );
+
+}
+
+
+/* APPOINTMENT */
+
+function scheduleAppointment(){
+
+    alert(
+        "Appointment scheduled successfully!"
+    );
+
+}
+
+
+/* REVIEW */
+
+function submitReview(){
+
+    alert(
+        "Thank you! Your review has been submitted."
+    );
+
+}
+
+
+/* ADMIN */
+
+function adminLogin(){
+
+    alert(
+        "Admin login successful!"
+    );
+
+}
+
+
+function addVehicle(){
+
+    alert(
+        "Vehicle added successfully!"
+    );
+
+}
+
+
+function approveBooking(){
+
+    alert(
+        "User booking approved successfully!"
+    );
+
+}
+
+
+function rejectBooking(){
+
+    alert(
+        "Booking rejected successfully!"
+    );
+
+}
+
+
+function viewBooking(){
+
+    alert(
+        "Booking details displayed."
+    );
+
+}
+
+
+function editVehicle(){
+
+    alert(
+        "Vehicle editing mode opened."
+    );
+
+}
+
+
+function deleteVehicle(){
+
+    if(
+        confirm(
+            "Are you sure you want to delete this vehicle?"
+        )
+    ){
+
+        alert(
+            "Vehicle deleted successfully!"
+        );
+
+    }
+
+}
+
+
+function updateProfile(){
+
+    alert(
+        "Profile updated successfully!"
+    );
+
+}
+
+
+function logout(){
+
+    alert(
+        "You have been logged out."
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>
+```

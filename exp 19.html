@@ -1,0 +1,1235 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VetCure - Animal Healthcare</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#f4f8f5;
+    color:#26352a;
+}
+
+header{
+    background:#14532d;
+    color:white;
+    padding:16px 6%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+.logo{
+    font-size:27px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#86efac;
+}
+
+nav{
+    display:flex;
+    gap:20px;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+nav a:hover{
+    color:#86efac;
+}
+
+.hero{
+    min-height:450px;
+    background:
+    linear-gradient(rgba(20,83,45,.82),rgba(20,83,45,.82)),
+    url("https://images.unsplash.com/photo-1556760544-74068565f05c")
+    center/cover;
+
+    color:white;
+    display:flex;
+    align-items:center;
+    padding:60px 8%;
+}
+
+.hero-content{
+    max-width:720px;
+}
+
+.hero h1{
+    font-size:48px;
+    margin-bottom:15px;
+}
+
+.hero p{
+    font-size:18px;
+    line-height:1.7;
+}
+
+.btn{
+    padding:11px 20px;
+    border:none;
+    border-radius:7px;
+    cursor:pointer;
+    font-weight:bold;
+    margin:6px;
+}
+
+.primary{
+    background:#15803d;
+    color:white;
+}
+
+.secondary{
+    background:#facc15;
+    color:#222;
+}
+
+.info{
+    background:#2563eb;
+    color:white;
+}
+
+.danger{
+    background:#dc2626;
+    color:white;
+}
+
+.container{
+    width:90%;
+    max-width:1200px;
+    margin:auto;
+}
+
+.section{
+    padding:50px 0;
+}
+
+.title{
+    text-align:center;
+    margin-bottom:30px;
+}
+
+.title h2{
+    color:#14532d;
+    font-size:32px;
+}
+
+.title p{
+    color:#6b7280;
+    margin-top:8px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.card-icon{
+    font-size:40px;
+    margin-bottom:12px;
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#14532d;
+}
+
+.form-box{
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-group label{
+    font-weight:bold;
+    margin-bottom:7px;
+}
+
+input,select,textarea{
+    padding:12px;
+    border:1px solid #d1d5db;
+    border-radius:7px;
+}
+
+textarea{
+    min-height:120px;
+}
+
+.full{
+    grid-column:1/-1;
+}
+
+.doctors{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.doctor{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    text-align:center;
+    box-shadow:0 4px 12px rgba(0,0,0,.08);
+}
+
+.doctor-photo{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin:auto;
+    background:#dcfce7;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:50px;
+}
+
+.rating{
+    color:#eab308;
+    margin:8px;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    background:white;
+}
+
+th{
+    background:#14532d;
+    color:white;
+    padding:13px;
+    text-align:left;
+}
+
+td{
+    padding:13px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.status{
+    padding:6px 12px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.pending{
+    background:#fef3c7;
+    color:#92400e;
+}
+
+.solved{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+
+.stat{
+    background:white;
+    padding:25px;
+    border-left:5px solid #15803d;
+    border-radius:10px;
+    box-shadow:0 4px 10px rgba(0,0,0,.07);
+}
+
+.stat h2{
+    color:#14532d;
+    margin-top:10px;
+    font-size:30px;
+}
+
+.analysis{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.disease{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,.07);
+}
+
+.bar{
+    height:14px;
+    background:#dcfce7;
+    border-radius:20px;
+    margin-top:10px;
+}
+
+.bar span{
+    display:block;
+    height:100%;
+    background:#15803d;
+    border-radius:20px;
+}
+
+footer{
+    background:#052e16;
+    color:white;
+    padding:40px 8%;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+}
+
+footer p{
+    color:#d1d5db;
+    line-height:1.8;
+}
+
+@media(max-width:900px){
+    .cards,
+    .dashboard{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .doctors,
+    .analysis{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:650px){
+    header{
+        flex-direction:column;
+        gap:15px;
+    }
+
+    nav{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:35px;
+    }
+
+    .cards,
+    .dashboard,
+    .form-grid,
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+
+    .full{
+        grid-column:auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">🐾 Vet<span>Cure</span></div>
+
+<nav>
+<a href="#home">Home</a>
+<a href="#complaint">Consult Doctor</a>
+<a href="#doctors">Doctors</a>
+<a href="#cure">Cure</a>
+<a href="#news">News</a>
+<a href="#doctorDashboard">Doctor</a>
+</nav>
+
+</header>
+
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<h1>Smart Animal Healthcare</h1>
+
+<p>
+VetCure connects farmers and animal owners with qualified
+veterinary doctors. Submit animal symptoms using text,
+images, audio or video and receive professional guidance.
+</p>
+
+<button class="btn secondary"
+onclick="document.getElementById('complaint').scrollIntoView()">
+Consult Doctor
+</button>
+
+<button class="btn"
+style="background:white;color:#14532d"
+onclick="document.getElementById('doctors').scrollIntoView()">
+Find Doctor
+</button>
+
+</div>
+
+</section>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>VetCure Services</h2>
+<p>Complete animal healthcare support</p>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-icon">🐄</div>
+<h3>Animal Consultation</h3>
+<p>Send symptoms and receive veterinary assistance.</p>
+</div>
+
+<div class="card">
+<div class="card-icon">🎥</div>
+<h3>Media Upload</h3>
+<p>Upload animal images, audio and video evidence.</p>
+</div>
+
+<div class="card">
+<div class="card-icon">💳</div>
+<h3>Online Payment</h3>
+<p>Support for clinic subscription payments.</p>
+</div>
+
+<div class="card">
+<div class="card-icon">📊</div>
+<h3>Disease Analysis</h3>
+<p>Analyze commonly reported animal diseases by area.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- USER REGISTRATION -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+<h2>👤 User Registration & Login</h2>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Full Name</label>
+<input type="text" placeholder="Enter your name">
+</div>
+
+<div class="form-group">
+<label>Mobile Number</label>
+<input type="tel" placeholder="Enter mobile number">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" placeholder="Enter email">
+</div>
+
+<div class="form-group">
+<label>Password</label>
+<input type="password" placeholder="Create password">
+</div>
+
+</div>
+
+<button class="btn primary" onclick="registerUser()">
+Register
+</button>
+
+<button class="btn info" onclick="loginUser()">
+Login
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- POST COMPLAINT -->
+
+<section id="complaint" class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>🐕 Post Animal Complaint</h2>
+<p>Send animal signs and symptoms to a doctor</p>
+</div>
+
+<div class="form-box">
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Animal Type</label>
+
+<select>
+<option>Cow</option>
+<option>Buffalo</option>
+<option>Goat</option>
+<option>Sheep</option>
+<option>Dog</option>
+<option>Cat</option>
+<option>Poultry</option>
+<option>Other</option>
+</select>
+
+</div>
+
+<div class="form-group">
+<label>Animal Age</label>
+<input type="number" placeholder="Age">
+</div>
+
+<div class="form-group">
+<label>Location</label>
+<input type="text" placeholder="Enter village / city">
+</div>
+
+<div class="form-group">
+<label>Select Doctor</label>
+
+<select>
+<option>Dr. Arun - Government CVH</option>
+<option>Dr. Priya - Private Clinic</option>
+<option>Dr. Kumar - Government CVH</option>
+</select>
+
+</div>
+
+<div class="form-group full">
+
+<label>Signs & Symptoms</label>
+
+<textarea
+placeholder="Describe animal symptoms, fever, eating problem, injury etc.">
+</textarea>
+
+</div>
+
+<div class="form-group">
+<label>Upload Animal Image</label>
+<input type="file" accept="image/*">
+</div>
+
+<div class="form-group">
+<label>Upload Video</label>
+<input type="file" accept="video/*">
+</div>
+
+<div class="form-group">
+<label>Upload Audio</label>
+<input type="file" accept="audio/*">
+</div>
+
+<div class="form-group">
+<label>Additional Document</label>
+<input type="file">
+</div>
+
+</div>
+
+<button class="btn primary"
+onclick="postComplaint()">
+Submit Complaint
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- COMPLAINT STATUS -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>📋 My Complaint Status</h2>
+</div>
+
+<table>
+
+<tr>
+<th>Complaint ID</th>
+<th>Animal</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>VC1001</td>
+<td>Cow</td>
+<td>Dr. Arun</td>
+<td>10-Aug-2026</td>
+<td><span class="status solved">Solution Given</span></td>
+</tr>
+
+<tr>
+<td>VC1002</td>
+<td>Dog</td>
+<td>Dr. Priya</td>
+<td>11-Aug-2026</td>
+<td><span class="status pending">Pending</span></td>
+</tr>
+
+</table>
+
+</div>
+</section>
+
+
+<!-- DOCTORS -->
+
+<section id="doctors" class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>👨‍⚕️ Veterinary Doctors</h2>
+<p>Choose a doctor for consultation</p>
+</div>
+
+<div class="doctors">
+
+<div class="doctor">
+
+<div class="doctor-photo">👨‍⚕️</div>
+
+<h3>Dr. Arun Kumar</h3>
+
+<p>Government CVH</p>
+
+<div class="rating">★★★★★</div>
+
+<p>Specialist in cattle diseases.</p>
+
+<button class="btn primary"
+onclick="subscribe('Government CVH')">
+Subscribe
+</button>
+
+</div>
+
+
+<div class="doctor">
+
+<div class="doctor-photo">👩‍⚕️</div>
+
+<h3>Dr. Priya</h3>
+
+<p>Private Veterinary Clinic</p>
+
+<div class="rating">★★★★★</div>
+
+<p>Pet and livestock specialist.</p>
+
+<button class="btn secondary"
+onclick="subscribe('Private Clinic')">
+Subscribe ₹500
+</button>
+
+</div>
+
+
+<div class="doctor">
+
+<div class="doctor-photo">👨‍⚕️</div>
+
+<h3>Dr. Kumar</h3>
+
+<p>Government CVH</p>
+
+<div class="rating">★★★★☆</div>
+
+<p>Animal infection specialist.</p>
+
+<button class="btn primary"
+onclick="subscribe('Government CVH')">
+Subscribe Free
+</button>
+
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- PAYMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+<h2>💳 Make Payment</h2>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Doctor / Clinic</label>
+
+<select>
+<option>Government CVH - Free</option>
+<option>Dr. Priya - ₹500</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Payment Method</label>
+
+<select>
+<option>Bank Transfer</option>
+<option>EasyPaisa</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Account / Mobile Number</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>Amount</label>
+<input type="number" value="500">
+</div>
+
+</div>
+
+<button class="btn primary"
+onclick="payment()">
+Make Payment
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- CURE -->
+
+<section id="cure" class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>💊 Common Animal Diseases & Cure</h2>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<div class="card-icon">🐄</div>
+<h3>Fever</h3>
+<p>Common signs include high temperature and reduced appetite.</p>
+<br>
+<b>Prescription:</b>
+<p>Consult veterinarian before administering medication.</p>
+</div>
+
+<div class="card">
+<div class="card-icon">🐕</div>
+<h3>Skin Infection</h3>
+<p>Redness, itching and skin irritation may occur.</p>
+<br>
+<b>Prescription:</b>
+<p>Veterinary examination recommended.</p>
+</div>
+
+<div class="card">
+<div class="card-icon">🐐</div>
+<h3>Digestive Problem</h3>
+<p>Loss of appetite and abnormal digestion.</p>
+<br>
+<b>Prescription:</b>
+<p>Provide veterinary consultation.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- NEWS -->
+
+<section id="news" class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>📰 Animal Healthcare News</h2>
+</div>
+
+<div class="cards">
+
+<div class="card">
+<h3>Animal Vaccination Camp</h3>
+<p>Government veterinary health camp available this month.</p>
+</div>
+
+<div class="card">
+<h3>Livestock Health Awareness</h3>
+<p>Learn preventive practices for maintaining animal health.</p>
+</div>
+
+<div class="card">
+<h3>Pet Care Guidelines</h3>
+<p>Follow regular veterinary checkups for healthy pets.</p>
+</div>
+
+</div>
+</div>
+</section>
+
+
+<!-- REPORT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>📊 Disease Analysis Report</h2>
+<p>Sample analysis based on recorded complaints</p>
+</div>
+
+<div class="analysis">
+
+<div class="disease">
+<h3>Skin Disease</h3>
+<p>Chennai Area</p>
+<div class="bar"><span style="width:75%"></span></div>
+<p>75%</p>
+</div>
+
+<div class="disease">
+<h3>Fever</h3>
+<p>Chennai Area</p>
+<div class="bar"><span style="width:60%"></span></div>
+<p>60%</p>
+</div>
+
+<div class="disease">
+<h3>Digestive Disease</h3>
+<p>Chennai Area</p>
+<div class="bar"><span style="width:45%"></span></div>
+<p>45%</p>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- FEEDBACK -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+<h2>⭐ Post Feedback</h2>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Doctor</label>
+<select>
+<option>Dr. Arun Kumar</option>
+<option>Dr. Priya</option>
+<option>Dr. Kumar</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Rating</label>
+<select>
+<option>★★★★★</option>
+<option>★★★★☆</option>
+<option>★★★☆☆</option>
+<option>★★☆☆☆</option>
+<option>★☆☆☆☆</option>
+</select>
+</div>
+
+<div class="form-group full">
+<label>Feedback</label>
+<textarea placeholder="Write your feedback"></textarea>
+</div>
+
+</div>
+
+<button class="btn primary"
+onclick="feedback()">
+Submit Feedback
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- DOCTOR DASHBOARD -->
+
+<section id="doctorDashboard" class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>👨‍⚕️ Doctor Dashboard</h2>
+</div>
+
+<div class="dashboard">
+
+<div class="stat">
+<h4>Total Complaints</h4>
+<h2>125</h2>
+</div>
+
+<div class="stat">
+<h4>Pending Requests</h4>
+<h2>18</h2>
+</div>
+
+<div class="stat">
+<h4>Solutions Given</h4>
+<h2>107</h2>
+</div>
+
+<div class="stat">
+<h4>Payments</h4>
+<h2>₹25,500</h2>
+</div>
+
+</div>
+
+</div>
+</section>
+
+
+<!-- DOCTOR REGISTRATION -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+<h2>👨‍⚕️ Doctor Registration</h2>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Doctor Name</label>
+<input type="text" placeholder="Enter doctor name">
+</div>
+
+<div class="form-group">
+<label>Medical Registration No.</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email">
+</div>
+
+<div class="form-group">
+<label>Phone</label>
+<input type="tel">
+</div>
+
+<div class="form-group">
+<label>Clinic Type</label>
+<select>
+<option>Government CVH</option>
+<option>Private Clinic</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Bank Account</label>
+<input type="text">
+</div>
+
+<div class="form-group">
+<label>EasyPaisa Number</label>
+<input type="text">
+</div>
+
+</div>
+
+<button class="btn primary"
+onclick="doctorRegister()">
+Register Doctor
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- DOCTOR COMPLAINT MANAGEMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="title">
+<h2>📋 Doctor Complaint Management</h2>
+</div>
+
+<table>
+
+<tr>
+<th>ID</th>
+<th>User</th>
+<th>Animal</th>
+<th>Symptoms</th>
+<th>Action</th>
+</tr>
+
+<tr>
+<td>VC1001</td>
+<td>Ravi</td>
+<td>Cow</td>
+<td>Fever, loss of appetite</td>
+<td>
+<button class="btn primary"
+onclick="postSolution()">
+Post Solution
+</button>
+</td>
+</tr>
+
+<tr>
+<td>VC1002</td>
+<td>Priya</td>
+<td>Dog</td>
+<td>Skin irritation</td>
+<td>
+<button class="btn primary"
+onclick="postSolution()">
+Post Solution
+</button>
+</td>
+</tr>
+
+</table>
+
+</div>
+</section>
+
+
+<!-- DOCTOR CURE MANAGEMENT -->
+
+<section class="section">
+
+<div class="container">
+
+<div class="form-box">
+
+<div class="title">
+<h2>💊 Manage Cure</h2>
+</div>
+
+<div class="form-grid">
+
+<div class="form-group">
+<label>Disease Name</label>
+<input type="text" placeholder="Disease">
+</div>
+
+<div class="form-group">
+<label>Animal Type</label>
+<input type="text" placeholder="Animal">
+</div>
+
+<div class="form-group full">
+<label>Solution / Prescription</label>
+<textarea placeholder="Enter solution"></textarea>
+</div>
+
+<div class="form-group full">
+<label>Upload Disease Image</label>
+<input type="file" accept="image/*">
+</div>
+
+</div>
+
+<button class="btn primary"
+onclick="saveCure()">
+Save Cure
+</button>
+
+</div>
+</div>
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-grid">
+
+<div>
+<h2>🐾 VetCure</h2>
+<p>
+Smart veterinary consultation platform connecting
+farmers and doctors.
+</p>
+</div>
+
+<div>
+<h3>Services</h3>
+<p>Animal Consultation</p>
+<p>Disease Information</p>
+<p>Doctor Consultation</p>
+<p>Online Payment</p>
+</div>
+
+<div>
+<h3>Contact</h3>
+<p>📞 +91 98765 43210</p>
+<p>✉ support@vetcure.com</p>
+<p>📍 Chennai, India</p>
+</div>
+
+</div>
+
+<br>
+<hr>
+<br>
+
+<center>
+<p>© 2026 VetCure - Animal Healthcare System</p>
+</center>
+
+</footer>
+
+
+<script>
+
+function registerUser(){
+    alert("User registration successful!");
+}
+
+function loginUser(){
+    alert("Login successful!");
+}
+
+function postComplaint(){
+    alert("Animal complaint submitted successfully!");
+}
+
+function subscribe(type){
+
+    if(type === "Government CVH"){
+        alert("Successfully subscribed to Government CVH. No payment required.");
+    }
+    else{
+        alert("Private clinic selected. Please complete payment.");
+    }
+
+}
+
+function payment(){
+    alert("Payment processed successfully! Transaction ID: VC" +
+    Math.floor(100000 + Math.random()*900000));
+}
+
+function feedback(){
+    alert("Thank you! Your feedback has been submitted.");
+}
+
+function doctorRegister(){
+    alert("Doctor registration submitted successfully.");
+}
+
+function postSolution(){
+    alert("Solution form opened. Doctor can submit veterinary solution.");
+}
+
+function saveCure(){
+    alert("Disease and cure information saved successfully.");
+}
+
+</script>
+
+</body>
+</html>
+```

@@ -1,0 +1,2006 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ComplainEase | Smart Complaint Management</title>
+
+<style>
+
+/* =========================
+   GLOBAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background: #111827;
+    color: white;
+    padding: 25px 15px;
+    z-index: 1000;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo h1 {
+    color: #38bdf8;
+    font-size: 27px;
+}
+
+.logo p {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar ul li {
+    margin: 8px 0;
+}
+
+.sidebar ul li a {
+    display: block;
+    text-decoration: none;
+    color: #d1d5db;
+    padding: 13px 15px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+
+.sidebar ul li a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 250px;
+    padding: 20px 30px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.search {
+    width: 350px;
+}
+
+.search input {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    background: #2563eb;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: linear-gradient(135deg, #2563eb, #0ea5e9);
+    color: white;
+    padding: 35px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.hero h2 {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    max-width: 700px;
+    line-height: 1.7;
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+}
+
+.stat-card h4 {
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+}
+
+.blue {
+    border-left: 5px solid #2563eb;
+}
+
+.orange {
+    border-left: 5px solid #f59e0b;
+}
+
+.green {
+    border-left: 5px solid #10b981;
+}
+
+.red {
+    border-left: 5px solid #ef4444;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+}
+
+/* =========================
+   MODULE CARDS
+========================= */
+
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.module {
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.module:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.08);
+}
+
+.module-icon {
+    font-size: 35px;
+    margin-bottom: 12px;
+}
+
+.module h3 {
+    margin-bottom: 8px;
+}
+
+.module p {
+    color: #6b7280;
+    line-height: 1.5;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 12px;
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.success {
+    background: #10b981;
+    color: white;
+}
+
+.warning {
+    background: #f59e0b;
+    color: white;
+}
+
+.danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full {
+    grid-column: 1 / -1;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input,
+select,
+textarea {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #111827;
+    color: white;
+    padding: 13px;
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.progress {
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.resolved {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+/* =========================
+   NOTIFICATION
+========================= */
+
+.notification {
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 7px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    margin: 8% auto;
+    padding: 25px;
+    border-radius: 12px;
+}
+
+.close {
+    float: right;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px) {
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .module-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .stats,
+    .module-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <h1>ComplainEase</h1>
+
+        <p>Smart Complaint Management</p>
+
+    </div>
+
+
+    <ul>
+
+        <li>
+            <a href="#dashboard">🏠 Dashboard</a>
+        </li>
+
+        <li>
+            <a href="#complaint">📝 Post Complaint</a>
+        </li>
+
+        <li>
+            <a href="#tracking">🔎 Track Complaint</a>
+        </li>
+
+        <li>
+            <a href="#user">👤 User Module</a>
+        </li>
+
+        <li>
+            <a href="#officer">👮 Officer Module</a>
+        </li>
+
+        <li>
+            <a href="#admin">⚙ Admin Module</a>
+        </li>
+
+        <li>
+            <a href="#feedback">⭐ Feedback</a>
+        </li>
+
+        <li>
+            <a href="#contact">📞 Contact Admin</a>
+        </li>
+
+    </ul>
+
+</div>
+
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<div class="main">
+
+
+<!-- TOP BAR -->
+
+<div class="topbar">
+
+    <div class="search">
+
+        <input
+        type="text"
+        id="searchBox"
+        placeholder="Search complaints..."
+        onkeyup="searchComplaint()">
+
+    </div>
+
+
+    <div class="profile">
+
+        <div>
+
+            <b>Welcome, User</b>
+
+            <br>
+
+            <small>Citizen Account</small>
+
+        </div>
+
+        <div class="profile-icon">
+            U
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard">
+
+<div class="hero">
+
+    <h2>Welcome to ComplainEase</h2>
+
+    <p>
+        A smart online complaint registration and management
+        platform that improves transparency, responsiveness,
+        tracking and communication between users, officers and
+        administrators.
+    </p>
+
+    <button
+    class="btn"
+    style="background:white;color:#2563eb"
+    onclick="openModal('loginModal')">
+
+        Login / Register
+
+    </button>
+
+</div>
+
+
+
+<!-- STATISTICS -->
+
+<div class="stats">
+
+    <div class="stat-card blue">
+
+        <h4>Total Complaints</h4>
+
+        <h2 id="totalComplaints">125</h2>
+
+    </div>
+
+
+    <div class="stat-card orange">
+
+        <h4>Pending</h4>
+
+        <h2>35</h2>
+
+    </div>
+
+
+    <div class="stat-card blue">
+
+        <h4>Under Review</h4>
+
+        <h2>28</h2>
+
+    </div>
+
+
+    <div class="stat-card green">
+
+        <h4>Resolved</h4>
+
+        <h2>62</h2>
+
+    </div>
+
+</div>
+
+</section>
+
+
+
+<!-- USER MODULE -->
+
+<section id="user" class="section">
+
+<h2>👤 User Module</h2>
+
+<div class="module-grid">
+
+
+<div class="module">
+
+<div class="module-icon">🔐</div>
+
+<h3>Login</h3>
+
+<p>
+Secure login for registered users.
+</p>
+
+<button
+class="btn primary"
+onclick="openModal('loginModal')">
+
+Login
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">📝</div>
+
+<h3>Register</h3>
+
+<p>
+Create a new ComplainEase user account.
+</p>
+
+<button
+class="btn success"
+onclick="openModal('registerModal')">
+
+Register
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">📢</div>
+
+<h3>Post Complaint</h3>
+
+<p>
+Submit complaints with category,
+description and supporting proof.
+</p>
+
+<a href="#complaint">
+<button class="btn primary">
+Post Complaint
+</button>
+</a>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">📍</div>
+
+<h3>Google Map Location</h3>
+
+<p>
+Mark or search the location where
+the complaint occurred.
+</p>
+
+<button
+class="btn warning"
+onclick="openMap()">
+
+Open Google Map
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">📊</div>
+
+<h3>Complaint Status</h3>
+
+<p>
+Track the current progress of submitted
+complaints.
+</p>
+
+<a href="#tracking">
+
+<button class="btn primary">
+Track Status
+</button>
+
+</a>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">⭐</div>
+
+<h3>Feedback</h3>
+
+<p>
+Provide feedback about the complaint
+resolution service.
+</p>
+
+<a href="#feedback">
+
+<button class="btn success">
+Give Feedback
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- COMPLAINT FORM -->
+
+<section id="complaint" class="section">
+
+<h2>📝 Register New Complaint</h2>
+
+<form id="complaintForm">
+
+<div class="form-grid">
+
+
+<div class="form-group">
+
+<label>Full Name</label>
+
+<input
+type="text"
+id="complainantName"
+placeholder="Enter your name"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Email</label>
+
+<input
+type="email"
+placeholder="Enter email"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+placeholder="Enter mobile number"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Complaint Category</label>
+
+<select required>
+
+<option value="">
+Select Category
+</option>
+
+<option>Road Problem</option>
+
+<option>Water Problem</option>
+
+<option>Electricity Problem</option>
+
+<option>Garbage Problem</option>
+
+<option>Public Service</option>
+
+<option>Other</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Complaint Title</label>
+
+<input
+type="text"
+placeholder="Enter complaint title"
+required>
+
+</div>
+
+
+<div class="form-group full">
+
+<label>Complaint Description</label>
+
+<textarea
+rows="6"
+placeholder="Describe your complaint in detail"
+required></textarea>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Complaint Location</label>
+
+<input
+type="text"
+id="complaintLocation"
+placeholder="Enter location"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Supporting Document / Proof</label>
+
+<input
+type="file">
+
+</div>
+
+
+</div>
+
+
+<button
+type="submit"
+class="btn primary">
+
+Submit Complaint
+
+</button>
+
+</form>
+
+
+<div
+id="complaintSuccess"
+class="notification"
+style="display:none;margin-top:20px">
+
+</div>
+
+</section>
+
+
+
+<!-- TRACKING -->
+
+<section id="tracking" class="section">
+
+<h2>🔎 Track Complaint</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Complaint ID</label>
+
+<input
+type="text"
+id="trackingId"
+placeholder="Example: CE1001">
+
+</div>
+
+<div class="form-group">
+
+<label>Registered Mobile</label>
+
+<input
+type="text"
+placeholder="Enter mobile number">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="trackComplaint()">
+
+Track Complaint
+
+</button>
+
+
+<div
+id="trackingResult"
+style="display:none;margin-top:25px">
+
+<h3>Complaint Details</h3>
+
+<table>
+
+<tr>
+
+<th>Complaint ID</th>
+
+<td id="resultId"></td>
+
+</tr>
+
+<tr>
+
+<th>Category</th>
+
+<td>Road Problem</td>
+
+</tr>
+
+<tr>
+
+<th>Date</th>
+
+<td>11-Aug-2026</td>
+
+</tr>
+
+<tr>
+
+<th>Status</th>
+
+<td>
+<span class="status progress">
+Under Review
+</span>
+</td>
+
+</tr>
+
+<tr>
+
+<th>Assigned Officer</th>
+
+<td>Officer Raj</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- OFFICER MODULE -->
+
+<section id="officer" class="section">
+
+<h2>👮 Officer Dashboard</h2>
+
+<div class="module-grid">
+
+
+<div class="module">
+
+<div class="module-icon">
+📋
+</div>
+
+<h3>View Complaints</h3>
+
+<p>
+View complaints assigned to the officer.
+</p>
+
+<button class="btn primary">
+View Complaints
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+🔄
+</div>
+
+<h3>Update Status</h3>
+
+<p>
+Change complaint status such as Pending,
+Under Review or Resolved.
+</p>
+
+<button
+class="btn warning"
+onclick="updateStatus()">
+
+Update Status
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+📷
+</div>
+
+<h3>Proof of Work</h3>
+
+<p>
+Upload proof or evidence of completed
+complaint work.
+</p>
+
+<input type="file">
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+🔐
+</div>
+
+<h3>Officer Login</h3>
+
+<p>
+Registered officers can access assigned
+complaints.
+</p>
+
+<button
+class="btn primary"
+onclick="openModal('officerLoginModal')">
+
+Officer Login
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN MODULE -->
+
+<section id="admin" class="section">
+
+<h2>⚙ Administrator Dashboard</h2>
+
+<div class="module-grid">
+
+
+<div class="module">
+
+<div class="module-icon">
+👮
+</div>
+
+<h3>Generate Officer ID</h3>
+
+<p>
+Generate login credentials for officers.
+</p>
+
+<button
+class="btn primary"
+onclick="generateOfficer()">
+
+Generate ID
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+👥
+</div>
+
+<h3>Manage Accounts</h3>
+
+<p>
+Create, delete and view user accounts.
+</p>
+
+<button class="btn primary">
+Manage Accounts
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+🔑
+</div>
+
+<h3>Change Password</h3>
+
+<p>
+Administrator can change account passwords.
+</p>
+
+<button
+class="btn warning">
+
+Change Password
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+👁
+</div>
+
+<h3>Feature Management</h3>
+
+<p>
+Hide or display selected system features.
+</p>
+
+<button
+class="btn warning"
+onclick="toggleFeature()">
+
+Hide Feature
+
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+📊
+</div>
+
+<h3>Reports</h3>
+
+<p>
+View complaint statistics and resolution
+reports.
+</p>
+
+<button class="btn success">
+View Reports
+</button>
+
+</div>
+
+
+<div class="module">
+
+<div class="module-icon">
+🗄
+</div>
+
+<h3>System Information</h3>
+
+<p>
+Insert and manage information available
+in the system.
+</p>
+
+<button class="btn primary">
+Manage Information
+</button>
+
+</div>
+
+</div>
+
+
+<!-- OFFICER TABLE -->
+
+<h3 style="margin-top:30px">
+Officer Accounts
+</h3>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>ID</th>
+
+<th>Officer Name</th>
+
+<th>Email</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="officerTable">
+
+<tr>
+
+<td>OF001</td>
+
+<td>Raj Kumar</td>
+
+<td>raj@example.com</td>
+
+<td>
+<span class="status resolved">
+Active
+</span>
+</td>
+
+<td>
+<button
+class="btn danger"
+onclick="deleteOfficer(this)">
+
+Delete
+
+</button>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>OF002</td>
+
+<td>Priya Sharma</td>
+
+<td>priya@example.com</td>
+
+<td>
+<span class="status resolved">
+Active
+</span>
+</td>
+
+<td>
+
+<button
+class="btn danger"
+onclick="deleteOfficer(this)">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- FEEDBACK -->
+
+<section id="feedback" class="section">
+
+<h2>⭐ User Feedback</h2>
+
+<div class="form-group">
+
+<label>Complaint ID</label>
+
+<input
+type="text"
+placeholder="Enter Complaint ID">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Rating</label>
+
+<select>
+
+<option>⭐⭐⭐⭐⭐ Excellent</option>
+
+<option>⭐⭐⭐⭐ Good</option>
+
+<option>⭐⭐⭐ Average</option>
+
+<option>⭐⭐ Poor</option>
+
+<option>⭐ Very Poor</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Feedback</label>
+
+<textarea
+rows="5"
+placeholder="Write your feedback"></textarea>
+
+</div>
+
+
+<button
+class="btn success"
+onclick="submitFeedback()">
+
+Submit Feedback
+
+</button>
+
+
+<p
+id="feedbackMessage"
+style="margin-top:15px;color:green">
+
+</p>
+
+</section>
+
+
+
+<!-- NOTIFICATIONS -->
+
+<section class="section">
+
+<h2>🔔 Notifications</h2>
+
+<div class="notification">
+
+<strong>Complaint Update:</strong>
+
+Your complaint CE1001 is currently
+under review by the assigned officer.
+
+</div>
+
+
+<div class="notification">
+
+<strong>System Message:</strong>
+
+You can upload additional evidence
+if required.
+
+</div>
+
+</section>
+
+
+
+<!-- CONTACT -->
+
+<section id="contact" class="section">
+
+<h2>📞 Admin Contact Details</h2>
+
+<div class="module-grid">
+
+<div class="module">
+
+<h3>Administrator</h3>
+
+<p>
+ComplainEase Administration
+</p>
+
+<p>
+Email: admin@complainease.com
+</p>
+
+<p>
+Phone: +91 98765 43210
+</p>
+
+</div>
+
+
+<div class="module">
+
+<h3>Office Address</h3>
+
+<p>
+ComplainEase Support Centre
+</p>
+
+<p>
+Chennai, Tamil Nadu, India
+</p>
+
+</div>
+
+
+<div class="module">
+
+<h3>Support Hours</h3>
+
+<p>
+Monday – Saturday
+</p>
+
+<p>
+9:00 AM – 6:00 PM
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2026 ComplainEase | Online Complaint Management System
+</p>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div id="loginModal" class="modal">
+
+<div class="modal-content">
+
+<span
+class="close"
+onclick="closeModal('loginModal')">
+
+&times;
+
+</span>
+
+<h2>User Login</h2>
+
+<br>
+
+<label>Email</label>
+
+<input
+type="email"
+placeholder="Enter email">
+
+<label>Password</label>
+
+<input
+type="password"
+placeholder="Enter password">
+
+<button
+class="btn primary"
+onclick="loginUser()">
+
+Login
+
+</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+</div>
+
+
+
+<!-- REGISTER MODAL -->
+
+<div id="registerModal" class="modal">
+
+<div class="modal-content">
+
+<span
+class="close"
+onclick="closeModal('registerModal')">
+
+&times;
+
+</span>
+
+<h2>User Registration</h2>
+
+<br>
+
+<label>Full Name</label>
+
+<input
+type="text"
+placeholder="Enter full name">
+
+<label>Email</label>
+
+<input
+type="email"
+placeholder="Enter email">
+
+<label>Password</label>
+
+<input
+type="password"
+placeholder="Create password">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+placeholder="Enter mobile">
+
+<button
+class="btn success"
+onclick="registerUser()">
+
+Create Account
+
+</button>
+
+<p id="registerMessage"></p>
+
+</div>
+
+</div>
+
+
+
+<!-- OFFICER LOGIN MODAL -->
+
+<div id="officerLoginModal" class="modal">
+
+<div class="modal-content">
+
+<span
+class="close"
+onclick="closeModal('officerLoginModal')">
+
+&times;
+
+</span>
+
+<h2>Officer Login</h2>
+
+<br>
+
+<label>Officer ID</label>
+
+<input
+type="text"
+placeholder="Enter Officer ID">
+
+<label>Password</label>
+
+<input
+type="password"
+placeholder="Enter password">
+
+<button
+class="btn primary"
+onclick="officerLogin()">
+
+Login
+
+</button>
+
+<p id="officerMessage"></p>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(id) {
+
+    document.getElementById(id).style.display = "block";
+
+}
+
+
+function closeModal(id) {
+
+    document.getElementById(id).style.display = "none";
+
+}
+
+
+window.onclick = function(event) {
+
+    if (event.target.classList.contains("modal")) {
+
+        event.target.style.display = "none";
+
+    }
+
+}
+
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function loginUser() {
+
+    document.getElementById("loginMessage").innerHTML =
+    "<br><b style='color:green'>Login successful!</b>";
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function registerUser() {
+
+    document.getElementById("registerMessage").innerHTML =
+    "<br><b style='color:green'>Registration successful!</b>";
+
+}
+
+
+/* =========================
+   OFFICER LOGIN
+========================= */
+
+function officerLogin() {
+
+    document.getElementById("officerMessage").innerHTML =
+    "<br><b style='color:green'>Officer login successful!</b>";
+
+}
+
+
+/* =========================
+   COMPLAINT
+========================= */
+
+document.getElementById("complaintForm")
+.addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let name =
+    document.getElementById("complainantName").value;
+
+    let complaintId =
+    "CE" + Math.floor(1000 + Math.random() * 9000);
+
+    document.getElementById("complaintSuccess").style.display =
+    "block";
+
+    document.getElementById("complaintSuccess").innerHTML =
+    "<strong>Complaint Submitted Successfully!</strong><br><br>" +
+    "Thank you, " + name + ".<br>" +
+    "Your Complaint ID is <strong>" +
+    complaintId +
+    "</strong>.<br>" +
+    "Please use this ID to track your complaint.";
+
+    document.getElementById("totalComplaints").innerHTML =
+    parseInt(document.getElementById("totalComplaints").innerHTML) + 1;
+
+    this.reset();
+
+});
+
+
+
+/* =========================
+   TRACK COMPLAINT
+========================= */
+
+function trackComplaint() {
+
+    let id =
+    document.getElementById("trackingId").value;
+
+    if (id === "") {
+
+        alert("Please enter Complaint ID.");
+
+        return;
+
+    }
+
+    document.getElementById("resultId").innerHTML = id;
+
+    document.getElementById("trackingResult").style.display =
+    "block";
+
+}
+
+
+
+/* =========================
+   GOOGLE MAP
+========================= */
+
+function openMap() {
+
+    let location =
+    document.getElementById("complaintLocation")
+    ? document.getElementById("complaintLocation").value
+    : "";
+
+    if (location === "") {
+
+        location = "Chennai";
+
+    }
+
+    window.open(
+    "https://www.google.com/maps/search/" +
+    encodeURIComponent(location),
+    "_blank"
+    );
+
+}
+
+
+
+/* =========================
+   OFFICER STATUS
+========================= */
+
+function updateStatus() {
+
+    let status =
+    prompt(
+    "Enter new status:\nPending\nUnder Review\nResolved"
+    );
+
+    if (status) {
+
+        alert(
+        "Complaint status updated to: " +
+        status
+        );
+
+    }
+
+}
+
+
+
+/* =========================
+   ADMIN GENERATE OFFICER
+========================= */
+
+function generateOfficer() {
+
+    let id =
+    "OF" +
+    Math.floor(100 + Math.random() * 900);
+
+    let password =
+    Math.random()
+    .toString(36)
+    .substring(2,8);
+
+    alert(
+    "New Officer Account Generated\n\n" +
+    "Officer ID: " + id +
+    "\nPassword: " + password
+    );
+
+}
+
+
+
+/* =========================
+   DELETE OFFICER
+========================= */
+
+function deleteOfficer(button) {
+
+    if (
+        confirm(
+        "Are you sure you want to delete this officer?"
+        )
+    ) {
+
+        button.parentElement.parentElement.remove();
+
+    }
+
+}
+
+
+
+/* =========================
+   HIDE FEATURE
+========================= */
+
+function toggleFeature() {
+
+    let userSection =
+    document.getElementById("user");
+
+    if (userSection.style.display === "none") {
+
+        userSection.style.display = "block";
+
+    } else {
+
+        userSection.style.display = "none";
+
+    }
+
+}
+
+
+
+/* =========================
+   FEEDBACK
+========================= */
+
+function submitFeedback() {
+
+    document.getElementById("feedbackMessage").innerHTML =
+    "✓ Thank you! Your feedback has been submitted successfully.";
+
+}
+
+
+
+/* =========================
+   SEARCH
+========================= */
+
+function searchComplaint() {
+
+    let value =
+    document.getElementById("searchBox")
+    .value
+    .toLowerCase();
+
+    let modules =
+    document.querySelectorAll(".module");
+
+    modules.forEach(function(module) {
+
+        if (
+            module.innerText
+            .toLowerCase()
+            .includes(value)
+        ) {
+
+            module.style.display = "block";
+
+        } else {
+
+            module.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>
+```

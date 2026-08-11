@@ -1,0 +1,1889 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VoteOnline - E-Voting Platform</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #1f2937;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: fixed;
+    width: 250px;
+    height: 100vh;
+    left: 0;
+    top: 0;
+    background: #111827;
+    color: white;
+    padding: 25px 15px;
+    z-index: 1000;
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo h1 {
+    color: #38bdf8;
+    font-size: 28px;
+}
+
+.logo p {
+    font-size: 12px;
+    color: #9ca3af;
+    margin-top: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 8px 0;
+}
+
+.sidebar a {
+    display: block;
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 13px;
+    border-radius: 8px;
+}
+
+.sidebar a:hover {
+    background: #2563eb;
+    color: white;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+    margin-left: 250px;
+    padding: 20px 30px;
+}
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+
+.search {
+    width: 350px;
+}
+
+.search input {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #2563eb;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+    background: linear-gradient(135deg,#1d4ed8,#06b6d4);
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+    margin-bottom: 25px;
+}
+
+.hero h2 {
+    font-size: 32px;
+    margin-bottom: 12px;
+}
+
+.hero p {
+    max-width: 750px;
+    line-height: 1.7;
+}
+
+.election-status {
+    display: inline-block;
+    background: #10b981;
+    padding: 7px 14px;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* =========================
+   STATISTICS
+========================= */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.07);
+    border-left: 5px solid #2563eb;
+}
+
+.stat-card h4 {
+    color: #6b7280;
+    margin-bottom: 10px;
+}
+
+.stat-card h2 {
+    font-size: 30px;
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.06);
+}
+
+.section h2 {
+    margin-bottom: 20px;
+}
+
+/* =========================
+   CANDIDATES
+========================= */
+
+.candidate-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+}
+
+.candidate {
+    border: 1px solid #e5e7eb;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.candidate:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 7px 20px rgba(0,0,0,0.1);
+}
+
+.candidate-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: #dbeafe;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.candidate h3 {
+    margin-top: 15px;
+}
+
+.candidate p {
+    color: #6b7280;
+    margin: 8px 0;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn {
+    border: none;
+    padding: 11px 18px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+}
+
+.success {
+    background: #10b981;
+    color: white;
+}
+
+.warning {
+    background: #f59e0b;
+    color: white;
+}
+
+.danger {
+    background: #ef4444;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+   FORM
+========================= */
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+
+.full {
+    grid-column: 1/-1;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+input,
+select {
+    padding: 12px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #111827;
+    color: white;
+    padding: 13px;
+    text-align: left;
+}
+
+td {
+    padding: 13px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+    background: #f8fafc;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.active {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+/* =========================
+   RESULT BARS
+========================= */
+
+.result {
+    margin-bottom: 20px;
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 7px;
+}
+
+.bar {
+    width: 100%;
+    height: 15px;
+    background: #e5e7eb;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    background: #2563eb;
+}
+
+/* =========================
+   SECURITY
+========================= */
+
+.security-box {
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+    padding: 18px;
+    border-radius: 8px;
+    line-height: 1.7;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+}
+
+.modal-content {
+    width: 90%;
+    max-width: 500px;
+    margin: 7% auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+}
+
+.close {
+    float: right;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #6b7280;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px) {
+
+    .stats {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .candidate-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:700px) {
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .main {
+        margin-left: 0;
+    }
+
+    .topbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .search {
+        width: 100%;
+    }
+
+    .stats,
+    .candidate-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<div class="sidebar">
+
+<div class="logo">
+
+<h1>VoteOnline</h1>
+
+<p>Secure E-Voting Platform</p>
+
+</div>
+
+
+<ul>
+
+<li>
+<a href="#dashboard">🏠 Dashboard</a>
+</li>
+
+<li>
+<a href="#login">🔐 Voter Login</a>
+</li>
+
+<li>
+<a href="#candidates">👥 Candidates</a>
+</li>
+
+<li>
+<a href="#vote">🗳 Cast Vote</a>
+</li>
+
+<li>
+<a href="#history">📜 Voting History</a>
+</li>
+
+<li>
+<a href="#results">📊 Election Results</a>
+</li>
+
+<li>
+<a href="#admin">⚙ Admin Panel</a>
+</li>
+
+<li>
+<a href="#security">🔒 Security</a>
+</li>
+
+</ul>
+
+</div>
+
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="main">
+
+
+<!-- TOPBAR -->
+
+<div class="topbar">
+
+<div class="search">
+
+<input
+type="text"
+placeholder="Search candidates..."
+id="searchCandidate"
+onkeyup="searchCandidates()">
+
+</div>
+
+
+<div class="profile">
+
+<div>
+
+<b>Voter Portal</b>
+
+<br>
+
+<small>Secure Election System</small>
+
+</div>
+
+<div class="profile-icon">
+V
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- DASHBOARD -->
+
+<section id="dashboard">
+
+<div class="hero">
+
+<h2>Welcome to VoteOnline</h2>
+
+<p>
+VoteOnline is a secure and user-friendly electronic
+voting platform designed to make elections accessible,
+transparent and efficient.
+</p>
+
+<div class="election-status">
+● Election is LIVE
+</div>
+
+<br>
+
+<button
+class="btn"
+style="background:white;color:#2563eb"
+onclick="openModal('loginModal')">
+
+Login to Vote
+
+</button>
+
+</div>
+
+
+
+<!-- STATISTICS -->
+
+<div class="stats">
+
+<div class="stat-card">
+
+<h4>Registered Voters</h4>
+
+<h2>10,250</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<h4>Total Candidates</h4>
+
+<h2>6</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<h4>Votes Cast</h4>
+
+<h2 id="voteCount">7,845</h2>
+
+</div>
+
+
+<div class="stat-card">
+
+<h4>Participation</h4>
+
+<h2>76.5%</h2>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- VOTER LOGIN -->
+
+<section id="login" class="section">
+
+<h2>🔐 Voter Login</h2>
+
+<div class="form-grid">
+
+<div class="form-group">
+
+<label>Voter ID</label>
+
+<input
+type="text"
+id="voterId"
+placeholder="Enter Voter ID">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Mobile Number</label>
+
+<input
+type="tel"
+placeholder="Registered mobile number">
+
+</div>
+
+</div>
+
+
+<button
+class="btn primary"
+onclick="sendLoginOTP()">
+
+Send OTP
+
+</button>
+
+
+<div id="loginOtpBox"
+style="display:none;margin-top:20px">
+
+<label>Enter OTP</label>
+
+<input
+type="text"
+id="loginOtp"
+placeholder="Enter 6-digit OTP">
+
+<button
+class="btn success"
+onclick="verifyLoginOTP()">
+
+Verify OTP
+
+</button>
+
+</div>
+
+
+<p
+id="loginMessage"
+style="margin-top:15px">
+
+</p>
+
+</section>
+
+
+
+<!-- CANDIDATES -->
+
+<section id="candidates" class="section">
+
+<h2>👥 Election Candidates</h2>
+
+<div class="candidate-grid"
+id="candidateGrid">
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👨
+</div>
+
+<h3>Arun Kumar</h3>
+
+<p>Party: Progressive Party</p>
+
+<p>Symbol: 🌳 Tree</p>
+
+<p>
+Development • Education • Employment
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Arun Kumar')">
+
+Select
+
+</button>
+
+</div>
+
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👩
+</div>
+
+<h3>Priya Sharma</h3>
+
+<p>Party: People's Party</p>
+
+<p>Symbol: 🌸 Flower</p>
+
+<p>
+Healthcare • Women • Education
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Priya Sharma')">
+
+Select
+
+</button>
+
+</div>
+
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👨
+</div>
+
+<h3>Rahul Raj</h3>
+
+<p>Party: National Party</p>
+
+<p>Symbol: ⭐ Star</p>
+
+<p>
+Infrastructure • Economy • Jobs
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Rahul Raj')">
+
+Select
+
+</button>
+
+</div>
+
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👩
+</div>
+
+<h3>Meena Devi</h3>
+
+<p>Party: People's Welfare</p>
+
+<p>Symbol: 🕊 Peace</p>
+
+<p>
+Environment • Safety • Welfare
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Meena Devi')">
+
+Select
+
+</button>
+
+</div>
+
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👨
+</div>
+
+<h3>Vikram Singh</h3>
+
+<p>Party: Democratic Front</p>
+
+<p>Symbol: ☀ Sun</p>
+
+<p>
+Technology • Digital India • Growth
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Vikram Singh')">
+
+Select
+
+</button>
+
+</div>
+
+
+
+<div class="candidate">
+
+<div class="candidate-img">
+👩
+</div>
+
+<h3>Anitha Rao</h3>
+
+<p>Party: Social Justice Party</p>
+
+<p>Symbol: ⚖ Justice</p>
+
+<p>
+Equality • Justice • Public Service
+</p>
+
+<button
+class="btn primary"
+onclick="selectCandidate('Anitha Rao')">
+
+Select
+
+</button>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- CAST VOTE -->
+
+<section id="vote" class="section">
+
+<h2>🗳 Cast Your Vote</h2>
+
+<div class="security-box">
+
+<strong>Important:</strong>
+
+Your vote can be submitted only once.
+Please verify your selected candidate before
+submitting your vote.
+
+</div>
+
+<br>
+
+
+<div class="form-group">
+
+<label>Selected Candidate</label>
+
+<input
+type="text"
+id="selectedCandidate"
+readonly
+placeholder="Select a candidate above">
+
+</div>
+
+
+<button
+class="btn warning"
+onclick="getVotingOTP()">
+
+Get OTP for Voting
+
+</button>
+
+
+<div id="votingOtpBox"
+style="display:none;margin-top:20px">
+
+<div class="form-group">
+
+<label>Enter Voting OTP</label>
+
+<input
+type="text"
+id="votingOtp"
+placeholder="Enter OTP">
+
+</div>
+
+
+<button
+class="btn success"
+onclick="submitVote()">
+
+Submit Vote
+
+</button>
+
+</div>
+
+
+<div
+id="voteMessage"
+style="margin-top:20px">
+
+</div>
+
+</section>
+
+
+
+<!-- VOTING HISTORY -->
+
+<section id="history" class="section">
+
+<h2>📜 Voting History</h2>
+
+<div class="table-container">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Election</th>
+
+<th>Date</th>
+
+<th>Ward</th>
+
+<th>Status</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>General Election 2026</td>
+
+<td>11-Aug-2026</td>
+
+<td>Ward 15</td>
+
+<td>
+<span class="status active">
+Vote Submitted
+</span>
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>Local Election 2025</td>
+
+<td>15-Nov-2025</td>
+
+<td>Ward 15</td>
+
+<td>
+<span class="status active">
+Vote Submitted
+</span>
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- RESULTS -->
+
+<section id="results" class="section">
+
+<h2>📊 Election Results</h2>
+
+<p style="margin-bottom:20px">
+Live election result preview
+</p>
+
+
+<div class="result">
+
+<div class="result-header">
+
+<b>Arun Kumar</b>
+
+<b>32%</b>
+
+</div>
+
+<div class="bar">
+
+<div
+class="bar-fill"
+style="width:32%">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="result">
+
+<div class="result-header">
+
+<b>Priya Sharma</b>
+
+<b>27%</b>
+
+</div>
+
+<div class="bar">
+
+<div
+class="bar-fill"
+style="width:27%">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="result">
+
+<div class="result-header">
+
+<b>Rahul Raj</b>
+
+<b>21%</b>
+
+</div>
+
+<div class="bar">
+
+<div
+class="bar-fill"
+style="width:21%">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="result">
+
+<div class="result-header">
+
+<b>Meena Devi</b>
+
+<b>12%</b>
+
+</div>
+
+<div class="bar">
+
+<div
+class="bar-fill"
+style="width:12%">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="result">
+
+<div class="result-header">
+
+<b>Others</b>
+
+<b>8%</b>
+
+</div>
+
+<div class="bar">
+
+<div
+class="bar-fill"
+style="width:8%">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- ADMIN -->
+
+<section id="admin" class="section">
+
+<h2>⚙ Administrator Dashboard</h2>
+
+
+<div class="candidate-grid">
+
+
+<div class="candidate">
+
+<h3>➕ Create Candidate</h3>
+
+<p>
+Add new election candidates.
+</p>
+
+<button
+class="btn primary"
+onclick="createCandidate()">
+
+Create Candidate
+
+</button>
+
+</div>
+
+
+<div class="candidate">
+
+<h3>📋 Create Voter List</h3>
+
+<p>
+Create and manage voter records.
+</p>
+
+<button
+class="btn primary"
+onclick="createVoter()">
+
+Create Voter List
+
+</button>
+
+</div>
+
+
+<div class="candidate">
+
+<h3>📥 Import Voter List</h3>
+
+<p>
+Import voter records from a file.
+</p>
+
+<input type="file">
+
+</div>
+
+
+<div class="candidate">
+
+<h3>🏛 Election Ward</h3>
+
+<p>
+Allocate users to election wards.
+</p>
+
+<button
+class="btn primary"
+onclick="allocateWard()">
+
+Allocate Ward
+
+</button>
+
+</div>
+
+
+<div class="candidate">
+
+<h3>🗳 Election Data</h3>
+
+<p>
+Allocate election data with candidates.
+</p>
+
+<button class="btn warning">
+
+Manage Data
+
+</button>
+
+</div>
+
+
+<div class="candidate">
+
+<h3>📊 Results</h3>
+
+<p>
+View and generate election results.
+</p>
+
+<a href="#results">
+
+<button class="btn success">
+
+Get Results
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+
+
+<!-- VOTER LIST -->
+
+<h3 style="margin-top:30px">
+Voter List
+</h3>
+
+<div class="table-container">
+
+<table id="voterTable">
+
+<thead>
+
+<tr>
+
+<th>Voter ID</th>
+
+<th>Name</th>
+
+<th>Ward</th>
+
+<th>Status</th>
+
+<th>Action</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+<tr>
+
+<td>VT1001</td>
+
+<td>Ravi Kumar</td>
+
+<td>Ward 15</td>
+
+<td>
+<span class="status active">
+Active
+</span>
+</td>
+
+<td>
+
+<button
+class="btn danger"
+onclick="deleteVoter(this)">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>VT1002</td>
+
+<td>Divya Sharma</td>
+
+<td>Ward 15</td>
+
+<td>
+<span class="status active">
+Active
+</span>
+</td>
+
+<td>
+
+<button
+class="btn danger"
+onclick="deleteVoter(this)">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td>VT1003</td>
+
+<td>Ajay Raj</td>
+
+<td>Ward 16</td>
+
+<td>
+<span class="status active">
+Active
+</span>
+</td>
+
+<td>
+
+<button
+class="btn danger"
+onclick="deleteVoter(this)">
+
+Delete
+
+</button>
+
+</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+</section>
+
+
+
+<!-- SECURITY -->
+
+<section id="security" class="section">
+
+<h2>🔒 Election Security</h2>
+
+<div class="security-box">
+
+<ul style="margin-left:20px;line-height:2">
+
+<li>Voter ID based authentication</li>
+
+<li>OTP based login verification</li>
+
+<li>Separate voting OTP</li>
+
+<li>One voter - one vote concept</li>
+
+<li>Secure voter information</li>
+
+<li>Candidate verification</li>
+
+<li>Election data protection</li>
+
+<li>Vote confirmation</li>
+
+<li>Transparent election result monitoring</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+
+<footer>
+
+<p>
+© 2026 VoteOnline | Secure Electronic Voting Platform
+</p>
+
+</footer>
+
+</div>
+
+
+
+<!-- =========================
+     LOGIN MODAL
+========================= -->
+
+<div id="loginModal" class="modal">
+
+<div class="modal-content">
+
+<span
+class="close"
+onclick="closeModal('loginModal')">
+
+&times;
+
+</span>
+
+<h2>Voter Login</h2>
+
+<br>
+
+<label>Voter ID</label>
+
+<input
+type="text"
+placeholder="Enter Voter ID">
+
+<label>Password</label>
+
+<input
+type="password"
+placeholder="Enter password">
+
+<button
+class="btn primary"
+onclick="loginSuccess()">
+
+Login
+
+</button>
+
+<p
+id="loginModalMessage"
+style="margin-top:15px">
+
+</p>
+
+</div>
+
+</div>
+
+
+
+<script>
+
+/* =========================
+   MODAL
+========================= */
+
+function openModal(id) {
+
+    document.getElementById(id).style.display = "block";
+
+}
+
+
+function closeModal(id) {
+
+    document.getElementById(id).style.display = "none";
+
+}
+
+
+window.onclick = function(event) {
+
+    if (event.target.classList.contains("modal")) {
+
+        event.target.style.display = "none";
+
+    }
+
+}
+
+
+
+/* =========================
+   LOGIN OTP
+========================= */
+
+let loginOTP = "";
+
+function sendLoginOTP() {
+
+    let voter =
+    document.getElementById("voterId").value;
+
+    if (voter === "") {
+
+        alert("Please enter Voter ID.");
+
+        return;
+
+    }
+
+    loginOTP =
+    Math.floor(100000 + Math.random() * 900000);
+
+    alert(
+        "Demo OTP: " + loginOTP
+    );
+
+    document.getElementById("loginOtpBox")
+    .style.display = "block";
+
+}
+
+
+function verifyLoginOTP() {
+
+    let entered =
+    document.getElementById("loginOtp").value;
+
+    if (entered == loginOTP) {
+
+        document.getElementById("loginMessage").innerHTML =
+        "<b style='color:green'>✓ OTP verified. Login successful.</b>";
+
+    } else {
+
+        document.getElementById("loginMessage").innerHTML =
+        "<b style='color:red'>Invalid OTP.</b>";
+
+    }
+
+}
+
+
+
+/* =========================
+   SELECT CANDIDATE
+========================= */
+
+function selectCandidate(name) {
+
+    document.getElementById("selectedCandidate")
+    .value = name;
+
+    alert(
+        "Selected Candidate: " + name
+    );
+
+    document.getElementById("vote")
+    .scrollIntoView({
+        behavior:"smooth"
+    });
+
+}
+
+
+
+/* =========================
+   VOTING OTP
+========================= */
+
+let votingOTP = "";
+
+function getVotingOTP() {
+
+    let candidate =
+    document.getElementById("selectedCandidate").value;
+
+    if (candidate === "") {
+
+        alert("Please select a candidate first.");
+
+        return;
+
+    }
+
+    votingOTP =
+    Math.floor(100000 + Math.random() * 900000);
+
+    alert(
+        "Demo Voting OTP: " + votingOTP
+    );
+
+    document.getElementById("votingOtpBox")
+    .style.display = "block";
+
+}
+
+
+
+/* =========================
+   SUBMIT VOTE
+========================= */
+
+function submitVote() {
+
+    let entered =
+    document.getElementById("votingOtp").value;
+
+    let candidate =
+    document.getElementById("selectedCandidate").value;
+
+    if (entered != votingOTP) {
+
+        alert("Invalid Voting OTP.");
+
+        return;
+
+    }
+
+    document.getElementById("voteMessage").innerHTML =
+
+    "<div class='security-box'>" +
+
+    "<h3>✓ Vote Submitted Successfully</h3>" +
+
+    "<br>" +
+
+    "Selected Candidate: <b>" +
+    candidate +
+    "</b><br><br>" +
+
+    "Transaction ID: <b>VOTE" +
+    Math.floor(100000 + Math.random() * 900000) +
+    "</b><br><br>" +
+
+    "Your vote has been recorded successfully." +
+
+    "</div>";
+
+    let count =
+    document.getElementById("voteCount");
+
+    count.innerHTML =
+    parseInt(count.innerHTML.replace(",","")) + 1;
+
+}
+
+
+
+/* =========================
+   ADMIN FUNCTIONS
+========================= */
+
+function createCandidate() {
+
+    let name =
+    prompt("Enter Candidate Name:");
+
+    if (name) {
+
+        alert(
+            "Candidate " +
+            name +
+            " created successfully."
+        );
+
+    }
+
+}
+
+
+function createVoter() {
+
+    let name =
+    prompt("Enter Voter Name:");
+
+    if (name) {
+
+        let id =
+        "VT" +
+        Math.floor(1000 + Math.random() * 9000);
+
+        alert(
+            "Voter created successfully.\n\n" +
+            "Voter ID: " + id
+        );
+
+    }
+
+}
+
+
+function allocateWard() {
+
+    let voter =
+    prompt("Enter Voter ID:");
+
+    let ward =
+    prompt("Enter Ward Number:");
+
+    if (voter && ward) {
+
+        alert(
+            voter +
+            " allocated to Ward " +
+            ward
+        );
+
+    }
+
+}
+
+
+function deleteVoter(button) {
+
+    if (
+        confirm(
+            "Are you sure you want to delete this voter?"
+        )
+    ) {
+
+        button
+        .parentElement
+        .parentElement
+        .remove();
+
+    }
+
+}
+
+
+
+/* =========================
+   SEARCH CANDIDATES
+========================= */
+
+function searchCandidates() {
+
+    let search =
+    document.getElementById("searchCandidate")
+    .value
+    .toLowerCase();
+
+    let candidates =
+    document.querySelectorAll(".candidate");
+
+    candidates.forEach(function(card) {
+
+        if (
+            card.innerText
+            .toLowerCase()
+            .includes(search)
+        ) {
+
+            card.style.display = "block";
+
+        } else {
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+
+/* =========================
+   LOGIN MODAL
+========================= */
+
+function loginSuccess() {
+
+    document.getElementById("loginModalMessage")
+    .innerHTML =
+    "<b style='color:green'>✓ Login successful!</b>";
+
+}
+
+</script>
+
+</body>
+
+</html>
+```

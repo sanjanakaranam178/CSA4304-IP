@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>InsureEasy - Insurance Management System</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #f4f7fb;
+            color: #333;
+        }
+
+        /* HEADER */
+
+        header {
+            background: #12355b;
+            color: white;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header h1 {
+            font-size: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #4cc9f0;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 520px;
+
+            background:
+            linear-gradient(
+                rgba(18,53,91,.75),
+                rgba(18,53,91,.75)
+            ),
+            url("https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1600&q=80");
+
+            background-size: cover;
+            background-position: center;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 30px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 19px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .hero button {
+            padding: 14px 28px;
+            margin: 8px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .primary {
+            background: #4cc9f0;
+            color: #12355b;
+        }
+
+        .secondary {
+            background: #fca311;
+            color: white;
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 55px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #12355b;
+            font-size: 32px;
+            margin-bottom: 35px;
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+            grid-template-columns:
+            repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 22px;
+        }
+
+        .feature {
+            background: white;
+            padding: 28px;
+            border-radius: 12px;
+            text-align: center;
+
+            box-shadow:
+            0 4px 15px rgba(0,0,0,.08);
+        }
+
+        .feature span {
+            font-size: 42px;
+        }
+
+        .feature h3 {
+            color: #12355b;
+            margin: 15px 0 10px;
+        }
+
+        /* POLICY CARDS */
+
+        .policies {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(260px, 1fr));
+
+            gap: 25px;
+        }
+
+        .policy {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+
+            box-shadow:
+            0 4px 15px rgba(0,0,0,.1);
+        }
+
+        .policy img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .policy-content {
+            padding: 22px;
+        }
+
+        .policy-content h3 {
+            color: #12355b;
+            margin-bottom: 10px;
+        }
+
+        .policy-content p {
+            margin: 8px 0;
+        }
+
+        .price {
+            color: #fca311;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* COMPARISON */
+
+        .comparison {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th {
+            background: #12355b;
+            color: white;
+        }
+
+        th,
+        td {
+            padding: 14px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        td button {
+            background: #fca311;
+            color: white;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* LOGIN */
+
+        .login-section {
+            background: #eef5fb;
+        }
+
+        .forms {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(300px, 1fr));
+
+            gap: 30px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+            0 4px 15px rgba(0,0,0,.08);
+        }
+
+        .form-box h2 {
+            color: #12355b;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+
+            padding: 13px;
+
+            margin: 8px 0;
+
+            border: 1px solid #ccc;
+
+            border-radius: 6px;
+        }
+
+        textarea {
+            height: 100px;
+            resize: none;
+        }
+
+        .form-box button {
+            width: 100%;
+
+            padding: 13px;
+
+            margin-top: 10px;
+
+            background: #12355b;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 6px;
+
+            cursor: pointer;
+        }
+
+        .form-box button:hover {
+            background: #1d5d91;
+        }
+
+        .message {
+            margin-top: 15px;
+
+            padding: 12px;
+
+            background: #e8f5e9;
+
+            color: #256029;
+
+            border-radius: 6px;
+
+            display: none;
+        }
+
+        /* DASHBOARD */
+
+        .dashboard {
+            display: grid;
+
+            grid-template-columns:
+            repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 20px;
+        }
+
+        .dashboard-card {
+            background: white;
+
+            padding: 25px;
+
+            border-radius: 10px;
+
+            box-shadow:
+            0 3px 12px rgba(0,0,0,.08);
+        }
+
+        .dashboard-card h3 {
+            color: #12355b;
+        }
+
+        .number {
+            font-size: 30px;
+
+            font-weight: bold;
+
+            color: #fca311;
+
+            margin-top: 10px;
+        }
+
+        /* ALERT */
+
+        .alert {
+            background: #fff3cd;
+
+            border-left: 5px solid #fca311;
+
+            padding: 20px;
+
+            border-radius: 8px;
+
+            margin-bottom: 20px;
+        }
+
+        /* CLAIM */
+
+        .claim-box {
+            max-width: 700px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+            0 4px 15px rgba(0,0,0,.1);
+        }
+
+        /* FOOTER */
+
+        footer {
+            background: #12355b;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 30px;
+        }
+
+        footer p {
+            margin: 8px;
+        }
+
+        /* MOBILE */
+
+        @media(max-width:700px) {
+
+            header {
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+            nav a {
+                font-size: 13px;
+
+                margin: 5px;
+            }
+
+            .hero h2 {
+                font-size: 34px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <h1>🛡️ InsureEasy</h1>
+
+    <nav>
+
+        <a href="#home">Home</a>
+
+        <a href="#policies">Policies</a>
+
+        <a href="#compare">Compare</a>
+
+        <a href="#login">Login</a>
+
+        <a href="#dashboard">Dashboard</a>
+
+    </nav>
+
+</header>
+
+
+<!-- HOME -->
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h2>
+            Smart Insurance Made Easy
+        </h2>
+
+        <p>
+            Compare, purchase and manage your
+            insurance policies easily with InsureEasy.
+        </p>
+
+        <button
+            class="primary"
+            onclick="scrollToSection('policies')">
+
+            Explore Policies
+
+        </button>
+
+        <button
+            class="secondary"
+            onclick="scrollToSection('login')">
+
+            Login / Register
+
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section>
+
+    <h2 class="section-title">
+        Why Choose InsureEasy?
+    </h2>
+
+    <div class="features">
+
+        <div class="feature">
+
+            <span>🔐</span>
+
+            <h3>Secure Login</h3>
+
+            <p>
+                Secure accounts for admins,
+                agents and customers.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>📊</span>
+
+            <h3>Compare Policies</h3>
+
+            <p>
+                Compare different insurance
+                plans before purchasing.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>💳</span>
+
+            <h3>Easy Payments</h3>
+
+            <p>
+                Manage premiums and
+                payment information.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>📱</span>
+
+            <h3>SMS Alerts</h3>
+
+            <p>
+                Receive reminders about
+                upcoming policy payments.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>📄</span>
+
+            <h3>Claims</h3>
+
+            <p>
+                Submit and manage
+                insurance claims easily.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <span>👨‍💼</span>
+
+            <h3>Agent Support</h3>
+
+            <p>
+                Agents can manage customers
+                and policies.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- POLICY TYPES -->
+
+<section id="policies">
+
+    <h2 class="section-title">
+        Insurance Policies
+    </h2>
+
+
+    <div class="policies">
+
+
+        <!-- HEALTH -->
+
+        <div class="policy">
+
+            <img
+            src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80">
+
+            <div class="policy-content">
+
+                <h3>🏥 Health Insurance</h3>
+
+                <p>
+                    Protect yourself and your family
+                    against medical expenses.
+                </p>
+
+                <p class="price">
+                    From ₹8,000 / Year
+                </p>
+
+                <button
+                    onclick="applyPolicy('Health Insurance')">
+
+                    Apply Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- AUTO -->
+
+        <div class="policy">
+
+            <img
+            src="https://images.unsplash.com/photo-1503736334956-4c8f8e92946d?auto=format&fit=crop&w=800&q=80">
+
+            <div class="policy-content">
+
+                <h3>🚗 Auto Insurance</h3>
+
+                <p>
+                    Protect your vehicle from accidents,
+                    theft and damages.
+                </p>
+
+                <p class="price">
+                    From ₹5,000 / Year
+                </p>
+
+                <button
+                    onclick="applyPolicy('Auto Insurance')">
+
+                    Apply Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- HOME -->
+
+        <div class="policy">
+
+            <img
+            src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80">
+
+            <div class="policy-content">
+
+                <h3>🏠 Home Insurance</h3>
+
+                <p>
+                    Protect your home and valuable
+                    belongings.
+                </p>
+
+                <p class="price">
+                    From ₹7,500 / Year
+                </p>
+
+                <button
+                    onclick="applyPolicy('Home Insurance')">
+
+                    Apply Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- LIFE -->
+
+        <div class="policy">
+
+            <img
+            src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80">
+
+            <div class="policy-content">
+
+                <h3>❤️ Life Insurance</h3>
+
+                <p>
+                    Financial protection for your
+                    family and future.
+                </p>
+
+                <p class="price">
+                    From ₹10,000 / Year
+                </p>
+
+                <button
+                    onclick="applyPolicy('Life Insurance')">
+
+                    Apply Now
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- POLICY COMPARISON -->
+
+<section id="compare">
+
+    <h2 class="section-title">
+        Compare Insurance Policies
+    </h2>
+
+    <div class="comparison">
+
+        <table>
+
+            <tr>
+
+                <th>Policy</th>
+
+                <th>Coverage</th>
+
+                <th>Annual Premium</th>
+
+                <th>Claim Support</th>
+
+                <th>Action</th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Health Insurance</td>
+
+                <td>₹10 Lakhs</td>
+
+                <td>₹8,000</td>
+
+                <td>24/7</td>
+
+                <td>
+
+                    <button
+                    onclick="selectPolicy('Health Insurance')">
+
+                        Select
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Auto Insurance</td>
+
+                <td>₹5 Lakhs</td>
+
+                <td>₹5,000</td>
+
+                <td>24/7</td>
+
+                <td>
+
+                    <button
+                    onclick="selectPolicy('Auto Insurance')">
+
+                        Select
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Home Insurance</td>
+
+                <td>₹25 Lakhs</td>
+
+                <td>₹7,500</td>
+
+                <td>24/7</td>
+
+                <td>
+
+                    <button
+                    onclick="selectPolicy('Home Insurance')">
+
+                        Select
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Life Insurance</td>
+
+                <td>₹50 Lakhs</td>
+
+                <td>₹10,000</td>
+
+                <td>24/7</td>
+
+                <td>
+
+                    <button
+                    onclick="selectPolicy('Life Insurance')">
+
+                        Select
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</section>
+
+
+<!-- LOGIN -->
+
+<section
+id="login"
+class="login-section">
+
+    <h2 class="section-title">
+        Login & Registration
+    </h2>
+
+
+    <div class="forms">
+
+
+        <!-- ADMIN -->
+
+        <div class="form-box">
+
+            <h2>👨‍💼 Admin Login</h2>
+
+            <input
+            type="text"
+            id="adminUser"
+            placeholder="Admin Username">
+
+            <input
+            type="password"
+            id="adminPass"
+            placeholder="Password">
+
+            <button onclick="adminLogin()">
+                Admin Login
+            </button>
+
+            <div
+            id="adminMessage"
+            class="message">
+            </div>
+
+        </div>
+
+
+        <!-- AGENT -->
+
+        <div class="form-box">
+
+            <h2>🤝 Agent Login</h2>
+
+            <input
+            type="text"
+            id="agentUser"
+            placeholder="Agent Username">
+
+            <input
+            type="password"
+            id="agentPass"
+            placeholder="Password">
+
+            <button onclick="agentLogin()">
+                Agent Login
+            </button>
+
+            <div
+            id="agentMessage"
+            class="message">
+            </div>
+
+        </div>
+
+
+        <!-- USER -->
+
+        <div class="form-box">
+
+            <h2>👤 User Login</h2>
+
+            <input
+            type="text"
+            id="userLogin"
+            placeholder="Username">
+
+            <input
+            type="password"
+            id="userPassword"
+            placeholder="Password">
+
+            <button onclick="userLogin()">
+                User Login
+            </button>
+
+            <div
+            id="userMessage"
+            class="message">
+            </div>
+
+        </div>
+
+
+        <!-- USER REGISTRATION -->
+
+        <div class="form-box">
+
+            <h2>📝 User Registration</h2>
+
+            <input
+            type="text"
+            id="registerName"
+            placeholder="Full Name">
+
+            <input
+            type="email"
+            id="registerEmail"
+            placeholder="Email">
+
+            <input
+            type="text"
+            id="registerPhone"
+            placeholder="Mobile Number">
+
+            <input
+            type="text"
+            id="registerUsername"
+            placeholder="Username">
+
+            <input
+            type="password"
+            id="registerPassword"
+            placeholder="Password">
+
+            <button onclick="registerUser()">
+                Register
+            </button>
+
+            <div
+            id="registerMessage"
+            class="message">
+            </div>
+
+        </div>
+
+
+        <!-- AGENT REGISTRATION -->
+
+        <div class="form-box">
+
+            <h2>🤝 Agent Registration</h2>
+
+            <input
+            type="text"
+            id="agentName"
+            placeholder="Agent Name">
+
+            <input
+            type="email"
+            id="agentEmail"
+            placeholder="Email">
+
+            <input
+            type="text"
+            id="agentPhone"
+            placeholder="Phone Number">
+
+            <input
+            type="text"
+            id="agentRegUser"
+            placeholder="Username">
+
+            <input
+            type="password"
+            id="agentRegPass"
+            placeholder="Password">
+
+            <button onclick="registerAgent()">
+                Register Agent
+            </button>
+
+            <div
+            id="agentRegMessage"
+            class="message">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ADMIN DASHBOARD -->
+
+<section id="dashboard">
+
+    <h2 class="section-title">
+        Admin Dashboard
+    </h2>
+
+
+    <div class="dashboard">
+
+        <div class="dashboard-card">
+
+            <h3>👥 Total Agents</h3>
+
+            <div
+            class="number"
+            id="agentCount">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>👤 Total Customers</h3>
+
+            <div
+            class="number"
+            id="customerCount">
+
+                0
+
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>📄 Active Policies</h3>
+
+            <div class="number">
+                128
+            </div>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>💰 Premium Due</h3>
+
+            <div class="number">
+                ₹2.4L
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <br><br>
+
+
+    <div class="alert">
+
+        <strong>
+            🔔 Renewal Reminder
+        </strong>
+
+        <p>
+            15 customer policies are due for renewal
+            within the next 7 days.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- AGENT CUSTOMER MANAGEMENT -->
+
+<section>
+
+    <h2 class="section-title">
+        Agent - Customer Management
+    </h2>
+
+
+    <div class="forms">
+
+
+        <div class="form-box">
+
+            <h2>➕ Create Customer</h2>
+
+            <input
+            type="text"
+            id="customerName"
+            placeholder="Customer Name">
+
+            <input
+            type="text"
+            id="customerPhone"
+            placeholder="Phone Number">
+
+            <input
+            type="email"
+            id="customerEmail"
+            placeholder="Email">
+
+            <select id="customerPolicy">
+
+                <option>
+                    Select Policy
+                </option>
+
+                <option>
+                    Health Insurance
+                </option>
+
+                <option>
+                    Auto Insurance
+                </option>
+
+                <option>
+                    Home Insurance
+                </option>
+
+                <option>
+                    Life Insurance
+                </option>
+
+            </select>
+
+            <button onclick="createCustomer()">
+
+                Create Customer
+
+            </button>
+
+            <div
+            id="customerMessage"
+            class="message">
+            </div>
+
+        </div>
+
+
+        <div class="form-box">
+
+            <h2>📋 Manage Policy</h2>
+
+            <input
+            type="text"
+            id="policyCustomer"
+            placeholder="Customer Name">
+
+            <select id="policySelect">
+
+                <option>
+                    Health Insurance
+                </option>
+
+                <option>
+                    Auto Insurance
+                </option>
+
+                <option>
+                    Home Insurance
+                </option>
+
+                <option>
+                    Life Insurance
+                </option>
+
+            </select>
+
+            <input
+            type="number"
+            id="premium"
+            placeholder="Premium Amount">
+
+            <input
+            type="date"
+            id="dueDate">
+
+            <button onclick="managePolicy()">
+
+                Save Policy
+
+            </button>
+
+            <div
+            id="policyMessage"
+            class="message">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SMS ALERT -->
+
+<section>
+
+    <h2 class="section-title">
+        📱 Send SMS Alert
+    </h2>
+
+
+    <div class="form-box"
+         style="max-width:650px;margin:auto;">
+
+        <input
+        type="text"
+        id="smsName"
+        placeholder="Customer Name">
+
+        <input
+        type="text"
+        id="smsPhone"
+        placeholder="Mobile Number">
+
+        <select id="smsType">
+
+            <option>
+                Premium Due Reminder
+            </option>
+
+            <option>
+                Policy Renewal Reminder
+            </option>
+
+            <option>
+                Payment Confirmation
+            </option>
+
+            <option>
+                Claim Update
+            </option>
+
+        </select>
+
+        <textarea
+        id="smsText"
+        placeholder="Enter SMS message">
+        </textarea>
+
+        <button onclick="sendSMS()">
+
+            Send SMS Alert
+
+        </button>
+
+        <div
+        id="smsMessage"
+        class="message">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- USER POLICY MANAGEMENT -->
+
+<section>
+
+    <h2 class="section-title">
+        👤 User Policy Dashboard
+    </h2>
+
+
+    <div class="dashboard">
+
+
+        <div class="dashboard-card">
+
+            <h3>Active Policy</h3>
+
+            <p>
+                Health Insurance
+            </p>
+
+            <p class="price">
+                ₹8,000 / Year
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Next Payment</h3>
+
+            <p>
+                20 August 2026
+            </p>
+
+            <p class="price">
+                ₹8,000
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Policy Status</h3>
+
+            <p>
+                🟢 Active
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>Claims</h3>
+
+            <p>
+                1 Pending Claim
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CLAIM -->
+
+<section>
+
+    <h2 class="section-title">
+        📄 File an Insurance Claim
+    </h2>
+
+
+    <div class="claim-box">
+
+        <input
+        type="text"
+        id="claimPolicy"
+        placeholder="Policy Number">
+
+        <select id="claimType">
+
+            <option>
+                Health Claim
+            </option>
+
+            <option>
+                Auto Claim
+            </option>
+
+            <option>
+                Home Claim
+            </option>
+
+            <option>
+                Life Claim
+            </option>
+
+        </select>
+
+        <textarea
+        id="claimDescription"
+        placeholder="Describe the claim">
+        </textarea>
+
+        <button onclick="fileClaim()">
+
+            Submit Claim
+
+        </button>
+
+        <div
+        id="claimMessage"
+        class="message">
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>
+        🛡️ InsureEasy
+    </h2>
+
+    <p>
+        Simple. Secure. Smart Insurance Management.
+    </p>
+
+    <p>
+        © 2026 InsureEasy. All Rights Reserved.
+    </p>
+
+</footer>
+
+
+<script>
+
+
+/* SCROLL FUNCTION */
+
+function scrollToSection(id) {
+
+    document
+    .getElementById(id)
+    .scrollIntoView({
+        behavior: "smooth"
+    });
+
+}
+
+
+/* ADMIN LOGIN */
+
+function adminLogin() {
+
+    let username =
+    document.getElementById("adminUser").value;
+
+    let password =
+    document.getElementById("adminPass").value;
+
+    let message =
+    document.getElementById("adminMessage");
+
+
+    if(username === "admin" &&
+       password === "admin123") {
+
+        message.innerHTML =
+        "✅ Admin Login Successful!";
+
+    } else {
+
+        message.innerHTML =
+        "❌ Invalid Admin Username or Password.";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* AGENT LOGIN */
+
+function agentLogin() {
+
+    let username =
+    document.getElementById("agentUser").value;
+
+    let password =
+    document.getElementById("agentPass").value;
+
+    let savedUser =
+    localStorage.getItem("agentUsername");
+
+    let savedPass =
+    localStorage.getItem("agentPassword");
+
+    let message =
+    document.getElementById("agentMessage");
+
+
+    if(username === savedUser &&
+       password === savedPass) {
+
+        message.innerHTML =
+        "✅ Agent Login Successful!";
+
+    } else {
+
+        message.innerHTML =
+        "❌ Invalid Agent Login.";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* USER REGISTRATION */
+
+function registerUser() {
+
+    let name =
+    document.getElementById("registerName").value;
+
+    let email =
+    document.getElementById("registerEmail").value;
+
+    let phone =
+    document.getElementById("registerPhone").value;
+
+    let username =
+    document.getElementById("registerUsername").value;
+
+    let password =
+    document.getElementById("registerPassword").value;
+
+
+    let message =
+    document.getElementById("registerMessage");
+
+
+    if(name === "" ||
+       email === "" ||
+       phone === "" ||
+       username === "" ||
+       password === "") {
+
+        message.innerHTML =
+        "Please fill all fields.";
+
+    } else {
+
+        localStorage.setItem(
+            "userName",
+            name
+        );
+
+        localStorage.setItem(
+            "userUsername",
+            username
+        );
+
+        localStorage.setItem(
+            "userPassword",
+            password
+        );
+
+        message.innerHTML =
+        "✅ User Registration Successful!";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* USER LOGIN */
+
+function userLogin() {
+
+    let username =
+    document.getElementById("userLogin").value;
+
+    let password =
+    document.getElementById("userPassword").value;
+
+    let savedUser =
+    localStorage.getItem("userUsername");
+
+    let savedPassword =
+    localStorage.getItem("userPassword");
+
+    let message =
+    document.getElementById("userMessage");
+
+
+    if(username === savedUser &&
+       password === savedPassword) {
+
+        message.innerHTML =
+        "✅ User Login Successful! Welcome.";
+
+    } else {
+
+        message.innerHTML =
+        "❌ Invalid Username or Password.";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* AGENT REGISTRATION */
+
+function registerAgent() {
+
+    let name =
+    document.getElementById("agentName").value;
+
+    let email =
+    document.getElementById("agentEmail").value;
+
+    let phone =
+    document.getElementById("agentPhone").value;
+
+    let username =
+    document.getElementById("agentRegUser").value;
+
+    let password =
+    document.getElementById("agentRegPass").value;
+
+
+    let message =
+    document.getElementById("agentRegMessage");
+
+
+    if(name === "" ||
+       email === "" ||
+       phone === "" ||
+       username === "" ||
+       password === "") {
+
+        message.innerHTML =
+        "Please fill all agent details.";
+
+    } else {
+
+        localStorage.setItem(
+            "agentName",
+            name
+        );
+
+        localStorage.setItem(
+            "agentUsername",
+            username
+        );
+
+        localStorage.setItem(
+            "agentPassword",
+            password
+        );
+
+
+        let count =
+        parseInt(
+            localStorage.getItem("agentCount")
+        ) || 0;
+
+        count++;
+
+        localStorage.setItem(
+            "agentCount",
+            count
+        );
+
+        document.getElementById(
+            "agentCount"
+        ).innerText = count;
+
+
+        message.innerHTML =
+        "✅ Agent Registration submitted. Waiting for Admin Approval.";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* CREATE CUSTOMER */
+
+function createCustomer() {
+
+    let name =
+    document.getElementById("customerName").value;
+
+    let phone =
+    document.getElementById("customerPhone").value;
+
+    let email =
+    document.getElementById("customerEmail").value;
+
+    let policy =
+    document.getElementById("customerPolicy").value;
+
+    let message =
+    document.getElementById("customerMessage");
+
+
+    if(name === "" ||
+       phone === "" ||
+       email === "") {
+
+        message.innerHTML =
+        "Please enter all customer details.";
+
+    } else {
+
+        let count =
+        parseInt(
+            localStorage.getItem("customerCount")
+        ) || 0;
+
+        count++;
+
+        localStorage.setItem(
+            "customerCount",
+            count
+        );
+
+        document.getElementById(
+            "customerCount"
+        ).innerText = count;
+
+
+        message.innerHTML =
+        "✅ Customer created successfully.\nPolicy: "
+        + policy;
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* MANAGE POLICY */
+
+function managePolicy() {
+
+    let customer =
+    document.getElementById("policyCustomer").value;
+
+    let policy =
+    document.getElementById("policySelect").value;
+
+    let premium =
+    document.getElementById("premium").value;
+
+    let date =
+    document.getElementById("dueDate").value;
+
+    let message =
+    document.getElementById("policyMessage");
+
+
+    if(customer === "" ||
+       premium === "" ||
+       date === "") {
+
+        message.innerHTML =
+        "Please enter all policy details.";
+
+    } else {
+
+        message.innerHTML =
+        "✅ Policy saved successfully for "
+        + customer
+        + ". Policy: "
+        + policy;
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* SEND SMS */
+
+function sendSMS() {
+
+    let name =
+    document.getElementById("smsName").value;
+
+    let phone =
+    document.getElementById("smsPhone").value;
+
+    let type =
+    document.getElementById("smsType").value;
+
+    let text =
+    document.getElementById("smsText").value;
+
+    let message =
+    document.getElementById("smsMessage");
+
+
+    if(name === "" ||
+       phone === "" ||
+       text === "") {
+
+        message.innerHTML =
+        "Please enter customer, phone and SMS details.";
+
+    } else {
+
+        message.innerHTML =
+        "📱 SMS Alert generated successfully for "
+        + name
+        + ". Type: "
+        + type;
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* APPLY POLICY */
+
+function applyPolicy(policy) {
+
+    alert(
+        "You selected "
+        + policy
+        + ".\n\n"
+        + "Please login to continue with the application."
+    );
+
+}
+
+
+/* SELECT POLICY */
+
+function selectPolicy(policy) {
+
+    alert(
+        policy
+        + " selected for comparison."
+    );
+
+}
+
+
+/* FILE CLAIM */
+
+function fileClaim() {
+
+    let policy =
+    document.getElementById("claimPolicy").value;
+
+    let type =
+    document.getElementById("claimType").value;
+
+    let description =
+    document.getElementById("claimDescription").value;
+
+    let message =
+    document.getElementById("claimMessage");
+
+
+    if(policy === "" ||
+       description === "") {
+
+        message.innerHTML =
+        "Please provide policy number and claim description.";
+
+    } else {
+
+        message.innerHTML =
+        "✅ "
+        + type
+        + " submitted successfully for policy "
+        + policy
+        + ".";
+
+    }
+
+    message.style.display = "block";
+
+}
+
+
+/* LOAD COUNTS */
+
+window.onload = function() {
+
+    let agents =
+    localStorage.getItem("agentCount") || 0;
+
+    let customers =
+    localStorage.getItem("customerCount") || 0;
+
+
+    document.getElementById(
+        "agentCount"
+    ).innerText = agents;
+
+
+    document.getElementById(
+        "customerCount"
+    ).innerText = customers;
+
+};
+
+</script>
+
+
+</body>
+</html>
