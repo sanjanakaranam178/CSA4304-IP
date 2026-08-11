@@ -1,0 +1,17 @@
+<section class="movies">
+
+<div class="movie-card">
+<img src="movie.jpg">
+<h3>Avengers Endgame</h3>
+<p>⭐ 4.9 Rating</p>
+<button>Book Tickets</button>
+</div>
+
+<div class="movie-card">
+<img src="movie2.jpg">
+<h3>Avatar 3</h3>
+<p>⭐ 4.8 Rating</p>
+<button>Book Tickets</button>
+</div>
+
+</section>
