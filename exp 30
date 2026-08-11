@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>IJSSE Journal Portal</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:#f4f8ff;
+}
+
+header{
+background:linear-gradient(90deg,#003973,#005AA7);
+padding:20px;
+color:white;
+text-align:center;
+}
+
+.hero{
+height:80vh;
+background:url('https://images.unsplash.com/photo-1455390582262-044cdead277a') center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:70px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:60px;
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.btn{
+background:#005AA7;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+}
+
+footer{
+background:#0f172a;
+color:white;
+padding:30px;
+text-align:center;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📚 International Journal of Scientific & Social Excellence</h1>
+<p>ISSN: 2395-1443 | eISSN: 2395-1451</p>
+</header>
+
+<section class="hero">
+
+<div>
+<h1>IJSSE Journal Portal</h1>
+<p>Submit • Review • Publish</p>
+<button class="btn">Submit Manuscript</button>
+</div>
+
+</section>
+
+<div class="grid">
+
+<div class="card">
+<h3>📖 About Journal</h3>
+<p>Mission, Scope & Objectives</p>
+</div>
+
+<div class="card">
+<h3>👨‍🏫 Authors</h3>
+<p>Registration & Paper Submission</p>
+</div>
+
+<div class="card">
+<h3>🔍 Reviewers</h3>
+<p>Review Assigned Articles</p>
+</div>
+
+<div class="card">
+<h3>👨‍💼 Editors</h3>
+<p>Manage Publication Workflow</p>
+</div>
+
+<div class="card">
+<h3>📚 Current Issue</h3>
+<p>Latest Published Articles</p>
+</div>
+
+<div class="card">
+<h3>📂 Archives</h3>
+<p>Previous Volumes & Issues</p>
+</div>
+
+</div>
+
+<footer>
+© 2026 IJSSE Journal Management System
+</footer>
+
+</body>
+</html>
