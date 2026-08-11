@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Hospital Appointment Booking</title>
+
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+background:#f2f9ff;
+}
+
+header{
+background:#0077b6;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+nav{
+background:#023e8a;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.hero{
+background:#caf0f8;
+padding:70px;
+text-align:center;
+}
+
+.hero h1{
+font-size:45px;
+color:#023e8a;
+}
+
+.container{
+width:90%;
+margin:auto;
+padding:30px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+width:250px;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+text-align:center;
+}
+
+.card h3{
+color:#0077b6;
+}
+
+form{
+width:450px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#0077b6;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#023e8a;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table,th,td{
+border:1px solid gray;
+}
+
+th{
+background:#0077b6;
+color:white;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+}
+
+footer{
+background:#023e8a;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:30px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🏥 Hospital Appointment Booking System</h1>
+
+</header>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#">Doctors</a>
+<a href="#">Hospitals</a>
+<a href="#">Book Appointment</a>
+<a href="#">Login</a>
+<a href="#">Register</a>
+<a href="#">Admin</a>
+<a href="#">Contact</a>
+
+</nav>
+
+<div class="hero">
+
+<h1>Book Your Doctor Appointment Online</h1>
+
+<p>Easy • Secure • Fast</p>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Search Doctor</h2>
+
+<form>
+
+<input type="text" placeholder="Doctor Name">
+
+<select>
+
+<option>Select Specialty</option>
+
+<option>Cardiologist</option>
+
+<option>Dentist</option>
+
+<option>Dermatologist</option>
+
+<option>Neurologist</option>
+
+<option>Orthopedic</option>
+
+</select>
+
+<input type="text" placeholder="Location">
+
+<button>Search</button>
+
+</form>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Available Doctors</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Dr. John</h3>
+<p>Cardiologist</p>
+<p>★★★★★</p>
+<button>Book</button>
+</div>
+
+<div class="card">
+<h3>Dr. Priya</h3>
+<p>Dermatologist</p>
+<p>★★★★☆</p>
+<button>Book</button>
+</div>
+
+<div class="card">
+<h3>Dr. Rahul</h3>
+<p>Dentist</p>
+<p>★★★★★</p>
+<button>Book</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Book Appointment</h2>
+
+<form>
+
+<input type="text" placeholder="Patient Name">
+
+<input type="email" placeholder="Email">
+
+<input type="date">
+
+<input type="time">
+
+<select>
+
+<option>Select Doctor</option>
+
+<option>Dr. John</option>
+
+<option>Dr. Priya</option>
+
+<option>Dr. Rahul</option>
+
+</select>
+
+<textarea placeholder="Health Problem"></textarea>
+
+<button>Confirm Appointment</button>
+
+</form>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Appointment History</h2>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+<th>Doctor</th>
+<th>Specialty</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>15-08-2026</td>
+<td>Dr. John</td>
+<td>Cardiology</td>
+<td>Completed</td>
+
+</tr>
+
+<tr>
+
+<td>20-08-2026</td>
+<td>Dr. Priya</td>
+<td>Dermatology</td>
+<td>Upcoming</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Patient Feedback</h2>
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<textarea placeholder="Write Your Review"></textarea>
+
+<button>Submit Review</button>
+
+</form>
+
+</div>
+
+<footer>
+
+<p>© 2026 Hospital Appointment Booking System</p>
+
+</footer>
+
+</body>
+</html>

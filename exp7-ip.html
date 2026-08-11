@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beauty Parlour Booking</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#fff0f5;
+}
+
+header{
+background:#e91e63;
+color:white;
+padding:20px;
+text-align:center;
+font-size:32px;
+}
+
+nav{
+background:#c2185b;
+padding:15px;
+text-align:center;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:15px;
+font-weight:bold;
+}
+
+.hero{
+background:#f8bbd0;
+padding:80px;
+text-align:center;
+}
+
+.hero h1{
+font-size:45px;
+color:#880e4f;
+}
+
+.container{
+width:90%;
+margin:auto;
+padding:30px;
+}
+
+.cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+background:white;
+width:250px;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+text-align:center;
+}
+
+.card h3{
+color:#e91e63;
+}
+
+form{
+background:white;
+width:450px;
+margin:auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px gray;
+}
+
+input,select,textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#e91e63;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:#ad1457;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+}
+
+table,th,td{
+border:1px solid gray;
+}
+
+th{
+background:#e91e63;
+color:white;
+}
+
+th,td{
+padding:10px;
+text-align:center;
+}
+
+footer{
+background:#880e4f;
+color:white;
+padding:20px;
+text-align:center;
+margin-top:30px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+💄 Beauty Parlour Appointment Booking System
+
+</header>
+
+<nav>
+
+<a href="#">Home</a>
+<a href="#">Services</a>
+<a href="#">Stylists</a>
+<a href="#">Book</a>
+<a href="#">Login</a>
+<a href="#">Register</a>
+<a href="#">Admin</a>
+<a href="#">Contact</a>
+
+</nav>
+
+<div class="hero">
+
+<h1>Book Your Beauty Appointment</h1>
+
+<p>Hair • Facial • Makeup • Spa • Bridal</p>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Our Services</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Hair Cut</h3>
+<p>$20</p>
+<button>Book Now</button>
+</div>
+
+<div class="card">
+<h3>Facial</h3>
+<p>$30</p>
+<button>Book Now</button>
+</div>
+
+<div class="card">
+<h3>Bridal Makeup</h3>
+<p>$150</p>
+<button>Book Now</button>
+</div>
+
+<div class="card">
+<h3>Spa</h3>
+<p>$50</p>
+<button>Book Now</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Book Appointment</h2>
+
+<form>
+
+<input type="text" placeholder="Customer Name">
+
+<input type="email" placeholder="Email">
+
+<input type="date">
+
+<input type="time">
+
+<select>
+
+<option>Select Service</option>
+
+<option>Hair Cut</option>
+
+<option>Facial</option>
+
+<option>Bridal Makeup</option>
+
+<option>Spa</option>
+
+</select>
+
+<select>
+
+<option>Select Stylist</option>
+
+<option>Priya</option>
+
+<option>Anjali</option>
+
+<option>Divya</option>
+
+</select>
+
+<textarea placeholder="Special Request"></textarea>
+
+<button>Confirm Appointment</button>
+
+</form>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Upcoming Appointments</h2>
+
+<table>
+
+<tr>
+
+<th>Date</th>
+<th>Time</th>
+<th>Service</th>
+<th>Stylist</th>
+<th>Status</th>
+
+</tr>
+
+<tr>
+
+<td>20/08/2026</td>
+<td>10:00 AM</td>
+<td>Hair Cut</td>
+<td>Priya</td>
+<td>Confirmed</td>
+
+</tr>
+
+<tr>
+
+<td>22/08/2026</td>
+<td>2:30 PM</td>
+<td>Facial</td>
+<td>Anjali</td>
+<td>Pending</td>
+
+</tr>
+
+</table>
+
+</div>
+
+<div class="container">
+
+<h2 align="center">Customer Feedback</h2>
+
+<form>
+
+<input type="text" placeholder="Your Name">
+
+<textarea placeholder="Write Your Feedback"></textarea>
+
+<button>Submit Feedback</button>
+
+</form>
+
+</div>
+
+<footer>
+
+© 2026 Beauty Parlour Appointment Booking System
+
+</footer>
+
+</body>
+</html>
