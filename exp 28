@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>TravelGo</title>
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:#f4fbff;
+}
+
+header{
+background:linear-gradient(90deg,#0093E9,#80D0C7);
+padding:20px;
+color:white;
+display:flex;
+justify-content:space-between;
+}
+
+.hero{
+height:90vh;
+background:url('https://images.unsplash.com/photo-1488646953014-85cb44e25828') center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+color:white;
+text-align:center;
+}
+
+.hero h1{
+font-size:75px;
+}
+
+.package-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+padding:60px;
+}
+
+.package{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.package img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.package-content{
+padding:20px;
+}
+
+.btn{
+background:#0093E9;
+color:white;
+padding:12px 25px;
+border:none;
+border-radius:25px;
+}
+
+</style>
+</head>
+<body>
+
+<header>
+<h2>✈️ TravelGo</h2>
+<div>Tours | Flights | Hotels</div>
+</header>
+
+<section class="hero">
+<div>
+<h1>Explore The World</h1>
+<p>Book Amazing Travel Packages</p>
+</div>
+</section>
+
+<section class="package-grid">
+
+<div class="package">
+<img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4">
+<div class="package-content">
+<h3>Bali Tour Package</h3>
+<p>₹49,999</p>
+<button class="btn">Book Now</button>
+</div>
+</div>
+
+<div class="package">
+<img src="https://images.unsplash.com/photo-1527631746610-bca00a040d60">
+<div class="package-content">
+<h3>Dubai Holiday</h3>
+<p>₹59,999</p>
+<button class="btn">Book Now</button>
+</div>
+</div>
+
+</section>
+
+</body>
+</html>
