@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>FoodExpress</title>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+
+body{
+margin:0;
+font-family:Poppins,sans-serif;
+background:#fff8f5;
+}
+
+header{
+background:linear-gradient(90deg,#ff512f,#dd2476);
+padding:20px;
+display:flex;
+justify-content:space-between;
+color:white;
+}
+
+.hero{
+height:90vh;
+background:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836') center/cover;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+color:white;
+}
+
+.hero h1{
+font-size:75px;
+}
+
+.search{
+background:white;
+padding:30px;
+width:85%;
+margin:-50px auto 50px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.1);
+}
+
+.food-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:25px;
+padding:60px;
+}
+
+.food{
+background:white;
+border-radius:20px;
+overflow:hidden;
+box-shadow:0 0 15px rgba(0,0,0,.1);
+}
+
+.food img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.food-content{
+padding:20px;
+}
+
+.btn{
+background:#ff512f;
+padding:12px 25px;
+color:white;
+border:none;
+border-radius:25px;
+}
+
+footer{
+background:#7c2d12;
+color:white;
+text-align:center;
+padding:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🍔 FoodExpress</h2>
+<div>Restaurants | Orders | Login</div>
+</header>
+
+<section class="hero">
+
+<div>
+<h1>Order Delicious Food</h1>
+<p>Fast Delivery At Your Doorstep</p>
+</div>
+
+</section>
+
+<div class="search">
+<h2>🔍 Search Restaurants & Food</h2>
+</div>
+
+<section class="food-grid">
+
+<div class="food">
+<img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd">
+<div class="food-content">
+<h3>Cheese Burger</h3>
+<p>₹199</p>
+<button class="btn">Add To Cart</button>
+</div>
+</div>
+
+<div class="food">
+<img src="https://images.unsplash.com/photo-1513104890138-7c749659a591">
+<div class="food-content">
+<h3>Pizza Combo</h3>
+<p>₹399</p>
+<button class="btn">Add To Cart</button>
+</div>
+</div>
+
+<div class="food">
+<img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38">
+<div class="food-content">
+<h3>Family Pizza</h3>
+<p>₹599</p>
+<button class="btn">Add To Cart</button>
+</div>
+</div>
+
+</section>
+
+<footer>
+© 2026 FoodExpress Online Food Ordering System
+</footer>
+
+</body>
+</html>
